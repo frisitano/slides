@@ -1,5 +1,6 @@
 # Build output
 site/
+book/
 
 # Node.js
 node_modules/

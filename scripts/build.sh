@@ -115,6 +115,9 @@ build_deck() {
 generate_summary() {
     log_info "Generating SUMMARY.md..."
 
+    # Create book source directory if it doesn't exist
+    mkdir -p book/src
+
     cat > "book/src/SUMMARY.md" <<'EOF'
 # Summary
 
