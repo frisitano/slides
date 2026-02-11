@@ -1,0 +1,8 @@
+# Marp Configuration
+# Enable HTML to allow Mermaid diagrams and custom styling
+
+html: true
+
+options:
+  markdown:
+    breaks: true

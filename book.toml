@@ -1,0 +1,23 @@
+[book]
+title = "Presentations"
+authors = []
+language = "en"
+multilingual = false
+src = "book/src"
+
+[build]
+build-dir = "site"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/YOUR_USERNAME/YOUR_REPO"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/YOUR_USERNAME/YOUR_REPO/edit/main/{path}"
+
+[output.html.search]
+enable = true
+
+[output.html.fold]
+enable = true
+level = 0
