@@ -52,7 +52,7 @@ section pre.mermaid svg foreignObject {
 </style>
 
 <!-- Slide 1: Title -->
-### Optional Proofs — Consensus Layer Integration Update 1
+# Optional Proofs — Consensus Layer Integration Update 1
 
 **Breakout Call, February 11, 2026**
 
@@ -66,7 +66,7 @@ li { font-size: 0.8em; }
 
 
 <!-- Slide 2: Agenda -->
-## Agenda
+### Agenda
 
 1. EngineAPI Refresher
 2. Validator Bandwidth & Prover Interface
