@@ -30,8 +30,8 @@ li { font-size: 0.75em; }
 - ✅ Unit tests
 - ✅ Network proof sync protocol (naive)
 - ✅ Integration testing
-- ⏳ `ExecutionProofStatus` RPC — PR in review
-- ⏳ `ExecutionProofStatus` based network sync - PR in review
+- ⏳ `ExecutionProofStatus` RPC — PR [feat/execution-status](https://github.com/frisitano/lighthouse/pull/1)
+- ⏳ `ExecutionProofStatus` based network sync - PR [feat/execution-status](https://github.com/frisitano/lighthouse/pull/1)
 - [ ] Validator proof re-signing
 - [ ] Ban validators for invalid proofs
 - [ ] Kurtosis support
