@@ -32,7 +32,7 @@ In the current Ethereum protocol:
 
 The proposer selection mechanism is the trust anchor: it is *in-protocol*, it is bound to stake, and it is rate-limited by the slot schedule. Everything downstream — block validation, state transition , etc— inherits a bound from this single choke point.
 
-![Current Ethereum: proposer is the trust anchor](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/01-current-trust-anchor.png)
+[![Current Ethereum: proposer is the trust anchor](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/01-current-trust-anchor.png)](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/01-current-trust-anchor.png)
 > *Figure 1 — One proposer per slot → one block per slot → bounded peer work per slot.*
 
 ---
@@ -60,7 +60,7 @@ An adversary with access to stake can:
 
 The attacker's cost is O(stake); the victims cost scales with proof validation time.
 
-![EIP-8025 attack surface: unbounded proofs per slot](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/02-eip8025-no-anchor.png)
+[![EIP-8025 attack surface: unbounded proofs per slot](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/02-eip8025-no-anchor.png)](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/02-eip8025-no-anchor.png)
 > *Figure 2 — N validators at the top, each producing its own envelope `(p_i, sig_Vi)` that fans into the proof-validating node. With no in-protocol cap, an attacker controlling many validators can amplify this load at will.*
 
 ---
@@ -89,12 +89,12 @@ The attacker's cost is O(stake); the victims cost scales with proof validation t
 
 **Problem — partition via selective gossip.** Because banning keys off the *original* signature, an attacker can weaponise it: Alice sends `(p_bad, sig_A)` to Bob (Bob bans key A), then `(p_good, sig_A)` to Carol; when Carol forwards Alice's valid envelope to Bob, Bob drops it — `sig_A` is banned. One invalid proof has censored a valid one, and scaled up this partitions which honest peers see which valid proofs.
 
-![Selective-partition attack on naive validator-banning](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/03-selective-partition-attack.png)
+[![Selective-partition attack on naive validator-banning](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/03-selective-partition-attack.png)](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/03-selective-partition-attack.png)
 > *Figure 3 — Alice sends `(p_bad, sig_A)` to Bob (invalid, red envelope) and `(p_good, sig_A)` to Carol (valid, green envelope). When Carol forwards `(p_good, sig_A)` to Bob, Bob drops it: the ban is keyed on `sig_A`, not on the proof data.*
 
 **Proposed fix — resigning at each hop.** Each forwarding validator replaces the signature on the gossiped envelope with their own before forwarding. Bob evaluates the proof against *Carol's* signature, not Alice's, so a ban on the originator cannot suppress valid content an honest validator chose to forward. Accountability follows the last signer, and malicious validators stake their own key on what they re-sign.
 
-![Resigning fix: Carol re-signs before forwarding](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/04-resigning-fix.png)
+[![Resigning fix: Carol re-signs before forwarding](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/04-resigning-fix.png)](https://raw.githubusercontent.com/frisitano/slides/main/writeups/diagrams/04-resigning-fix.png)
 > *Figure 4 — Same scenario with resigning. Carol strips `sig_A` and adds `sig_C`, so the envelope Bob receives is `(p_good, sig_C)`. Proof data is unchanged; only the signature flips, and Bob's ban on key A no longer censors it.*
 
 **Open questions:**
