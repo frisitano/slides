@@ -127,13 +127,13 @@ li { font-size: 0.7em; }
 - Requires two main parts: **`StatelessInput`** and **Guest program** definitions
 - **`StatelessInput`**
   - Cryptographically verifiable state required to execute a payload — private input to the guest program
-  - Standardised to reduce the complexity of running a prover (single witness format across provers)
+  - Standardised to reduce the complexity of running a prover (single witness format across guest programs)
 - **Guest program**
   - Exact statement attested to: EL state-transition function applied to `StatelessInput` + input-validation logic binding the witness to the payload's public commitments
 - **Specs and tests** — fully spec'd in `execution-specs` Amsterdam fork
   - [Stateless interfaces](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless.py) · [Guest program](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_guest.py) · [Host input assembly](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_host.py) · [SSZ schema](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_ssz.py)
   - ~163 [conformance tests](https://github.com/ethereum/execution-specs/tree/85fc20ca5937719a854472a87cb48d01ef1dffca/tests/amsterdam/eip8025_optional_proofs) covering valid and invalid cases (more tests still required)
-  - [Releases](https://github.com/ethereum/execution-specs/releases) done on top of latest EL devnet branch
+  - [Releases](https://github.com/ethereum/execution-spec-tests/releases?q=zkevm&expanded=true) done on top of latest EL devnet branch
 
 ---
 
