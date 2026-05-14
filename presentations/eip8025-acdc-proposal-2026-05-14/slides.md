@@ -101,6 +101,8 @@ class SignedExecutionProof(Container):
 
 **Req/resp:** `ExecutionProofsByRange` · `ExecutionProofsByRoot` · `ExecutionProofStatus`
 
+**Discovery:** new `eproof` ENR key advertises execution proof support.
+
 ---
 
 <style scoped>
