@@ -126,12 +126,16 @@ li { font-size: 0.7em; }
 <!-- Slide 8: Execution Layer -->
 ### Execution Layer
 
-- Requires two main parts: **`StatelessInput`** and **Guest program** definitions
+- **Guest program**:
+  - Which program execution proofs attest to.
+  - High-level parts: [input validation and transformation] + [STF] + [public inputs commitment].
 - **`StatelessInput`**
-  - Cryptographically verifiable state required to execute a payload — private input to the guest program
-  - Standardised to reduce the complexity of running a prover (single witness format across guest programs)
-- **Guest program**
-  - Exact statement attested to: EL state-transition function applied to `StatelessInput` + input-validation logic binding the witness to the payload's public commitments
+  - Input to the guest program.
+  - Apart from execution payload and auxiliary fields, it contains cryptographically verifiable data required for execution 
+  - Standardised to:
+    - reduce the complexity of running a prover (single witness format across guest programs)
+    - provide a stable interface for testing
+
 - **Specs and tests** — fully spec'd in `execution-specs` Amsterdam fork
   - [Stateless interfaces](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless.py) · [Guest program](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_guest.py) · [Host input assembly](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_host.py) · [SSZ schema](https://github.com/ethereum/execution-specs/blob/85fc20ca5937719a854472a87cb48d01ef1dffca/src/ethereum/forks/amsterdam/stateless_ssz.py)
   - ~163 [conformance tests](https://github.com/ethereum/execution-specs/tree/85fc20ca5937719a854472a87cb48d01ef1dffca/tests/amsterdam/eip8025_optional_proofs) covering valid and invalid cases (more tests still required)
@@ -143,8 +147,9 @@ li { font-size: 0.7em; }
 ### Join the discussion
 
 - **zkEVM breakout calls:** [ethereum/pm — L1-zkEVM breakouts](https://github.com/ethereum/pm/issues?q=is%3Aissue+L1-zkEVM+breakout)
-- **zkEVM team:** [website](https://zkevm.ethereum.foundation/) · [blog](https://zkevm.ethereum.foundation/blog)
 - **EthR&D Discord server**
   - [#l1-zkevm](https://discord.com/channels/595666850260713488/1375154553812422736) — zkVM-related discussions
   - [#l1-zkevm-protocol](https://discord.com/channels/595666850260713488/1451216716062523507) — protocol-related discussions
+- **EIP**:[latest version](https://github.com/ethereum/EIPs/pull/11604) (under review)
 - **EIP discussion:** [ethereum-magicians.org/t/25500](https://ethereum-magicians.org/t/eip-optional-execution-proofs/25500)
+- **zkEVM team:** [website](https://zkevm.ethereum.foundation/) · [blog](https://zkevm.ethereum.foundation/blog)
