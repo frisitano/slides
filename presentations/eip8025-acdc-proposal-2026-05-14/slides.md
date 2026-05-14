@@ -39,7 +39,7 @@ li { font-size: 0.75em; }
   - Make block validation accessible — preserving decentralisation even as gas limit and state grow
 - **Why "optional"**
   - Mitigates the risk of introducing novel cryptographic technology into the protocol
-  - Collect data, optimise, and build operational experience before enshrining
+  - Collect data, optimise, and build operational experience before potentially making proofs mandatory later on
   - Proof verification is not load-bearing on consensus — it sits outside fork choice and the state-transition function
 
 ---
@@ -47,7 +47,7 @@ li { font-size: 0.75em; }
 <!-- Slide 4: Why in Hegota -->
 ### Why in Hegota?
 
-- The technology is mature — proving stacks have been running in production on L2 rollups for years
+- ZK technology has sufficiently matured — proving stacks have been running in production on L2 rollups for years
 - First step toward mandatory proofs — better taken early, with time to iterate
 - Both CL and EL specs are largely settled
 - Both CL and EL have client implementations
