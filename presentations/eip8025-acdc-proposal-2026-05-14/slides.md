@@ -23,7 +23,7 @@ img { display: block; margin: 0.6em auto 0; max-width: 100%; max-height: 78vh; }
 <!-- Slide 2: tl;dr -->
 ### TLDR
 
-![tl;dr diagram](assets/tldr-diagram.png)
+![tl;dr diagram](assets/proof-flow.png)
 
 ---
 
@@ -81,7 +81,7 @@ p { font-size: 0.75em; }
 <!-- Slide 6: ProofEngine + P2P -->
 ### ProofEngine + P2P additions
 
-New `ProofEngine` interface + gossip type, modelled on the Engine API.
+New `ProofEngine` interface, modelled on the Engine API, + gossip type.
 
 ```python
 class ProofEngine(Protocol):
