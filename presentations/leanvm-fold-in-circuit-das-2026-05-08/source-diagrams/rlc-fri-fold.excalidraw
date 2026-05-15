@@ -1,0 +1,17 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "codex-generated",
+  "elements": [
+    {"id":"title","type":"text","x":160,"y":10,"width":520,"height":35,"text":"RLC + FRI fold inside leanVM","fontSize":28,"fontFamily":1,"textAlign":"center","strokeColor":"#1e1e1e","backgroundColor":"transparent"},
+    {"id":"rows","type":"rectangle","x":24,"y":76,"width":168,"height":82,"backgroundColor":"#f8f9fa","strokeColor":"#495057","strokeWidth":2,"label":{"text":"Rows\nC0 ... Cm-1"}},
+    {"id":"roots","type":"rectangle","x":252,"y":76,"width":168,"height":82,"backgroundColor":"#fff3bf","strokeColor":"#f59f00","strokeWidth":2,"label":{"text":"Merkle roots\nhash transcript"}},
+    {"id":"rho","type":"rectangle","x":480,"y":76,"width":150,"height":82,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"rho\nRLC challenge"}},
+    {"id":"rlc","type":"rectangle","x":260,"y":210,"width":220,"height":90,"backgroundColor":"#d3f9d8","strokeColor":"#2b8a3e","strokeWidth":2,"label":{"text":"C*[j] = sum rho^i C_i[j]\nextension-field aggregate"}},
+    {"id":"fri","type":"rectangle","x":580,"y":210,"width":190,"height":90,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"FRI folds\nall rounds in trace"}},
+    {"id":"constant","type":"rectangle","x":475,"y":342,"width":155,"height":58,"backgroundColor":"#f8f9fa","strokeColor":"#495057","strokeWidth":2,"label":{"text":"constant"}},
+    {"id":"vm","type":"rectangle","x":214,"y":190,"width":586,"height":225,"backgroundColor":"transparent","strokeColor":"#868e96","strokeWidth":2,"strokeStyle":"dashed","label":{"text":"leanVM certifies RLC + every fold step"}}
+  ],
+  "appState": {"viewBackgroundColor": "#ffffff"},
+  "files": {}
+}

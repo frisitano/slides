@@ -1,0 +1,16 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "codex-generated",
+  "elements": [
+    {"id":"title","type":"text","x":130,"y":10,"width":560,"height":35,"text":"Barycentric parity check per row","fontSize":28,"fontFamily":1,"textAlign":"center","strokeColor":"#1e1e1e","backgroundColor":"transparent"},
+    {"id":"rows","type":"rectangle","x":28,"y":78,"width":178,"height":86,"backgroundColor":"#f8f9fa","strokeColor":"#495057","strokeWidth":2,"label":{"text":"Full rows\nevens | odds"}},
+    {"id":"transcript","type":"rectangle","x":268,"y":78,"width":164,"height":86,"backgroundColor":"#fff3bf","strokeColor":"#f59f00","strokeWidth":2,"label":{"text":"roots -> D\none transcript"}},
+    {"id":"r","type":"rectangle","x":500,"y":78,"width":118,"height":86,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"r\nFS point"}},
+    {"id":"slices","type":"rectangle","x":350,"y":212,"width":165,"height":86,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"sL, sR\nbarycentric slices"}},
+    {"id":"check","type":"rectangle","x":54,"y":210,"width":226,"height":92,"backgroundColor":"#d3f9d8","strokeColor":"#2b8a3e","strokeWidth":2,"label":{"text":"for each C_i\nsum sL*even = sum sR*odd"}},
+    {"id":"accepted","type":"rectangle","x":584,"y":312,"width":198,"height":68,"backgroundColor":"#f8f9fa","strokeColor":"#495057","strokeWidth":2,"label":{"text":"RS row accepted\npaid B times"}}
+  ],
+  "appState": {"viewBackgroundColor": "#ffffff"},
+  "files": {}
+}

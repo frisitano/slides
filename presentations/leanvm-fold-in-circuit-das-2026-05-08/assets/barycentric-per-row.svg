@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="988" height="866" viewBox="0 0 988 866">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#868e96"/>
+    </marker>
+    <style>
+      .text{font-family:Virgil,Inter,Arial,sans-serif;fill:#1e1e1e}
+      .mono{font-family:Cascadia,Menlo,monospace}
+      .small{font-size:20px}
+      .tiny{font-size:17px;fill:#868e96}
+      .label{font-size:24px;font-weight:600}
+      .bar{stroke-width:2.5;rx:12;ry:12}
+      .arrow{stroke:#868e96;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .dash{fill:none;stroke:#495057;stroke-width:2.5;stroke-dasharray:10 8;rx:18;ry:18}
+    </style>
+  </defs>
+
+  <text x="494" y="40" text-anchor="middle" class="text" style="font-size:32px">Barycentric parity check per row</text>
+  <rect x="18" y="70" width="742" height="765" class="dash"/>
+  <text x="24" y="62" class="text small" fill="#495057">ZKVM Circuit</text>
+  <text x="775" y="94" class="text tiny">Private witness: full rows</text>
+  <text x="775" y="122" class="text tiny">Layout: evens then odds</text>
+
+  <text x="28" y="118" class="text label" fill="#1971c2">① Commit rows</text>
+  <text x="66" y="155" class="text tiny" fill="#1971c2">C₀</text>
+  <rect x="96" y="132" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="238" y="155" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₀ v₂ v₄ ···</text>
+  <rect x="408" y="132" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="550" y="155" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₁ v₃ v₅ ···</text>
+  <text x="66" y="200" class="text tiny" fill="#1971c2">C₁</text>
+  <rect x="96" y="177" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="238" y="200" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₀ v₂ v₄ ···</text>
+  <rect x="408" y="177" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="550" y="200" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₁ v₃ v₅ ···</text>
+  <text x="66" y="245" class="text tiny" fill="#1971c2">C₂</text>
+  <rect x="96" y="222" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="238" y="245" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₀ v₂ v₄ ···</text>
+  <rect x="408" y="222" width="284" height="34" fill="#d0ebff" stroke="#1971c2" class="bar"/>
+  <text x="550" y="245" text-anchor="middle" class="text mono tiny" fill="#1971c2">v₁ v₃ v₅ ···</text>
+  <text x="775" y="194" class="text tiny">rootᵢ = Merkle(Cᵢ)</text>
+
+  <path d="M394 258 C394 280 394 288 394 306" class="arrow"/>
+  <text x="28" y="302" class="text label" fill="#e67700">② Fiat-Shamir</text>
+  <rect x="120" y="326" width="548" height="50" fill="#fff3bf" stroke="#f59f00" class="bar"/>
+  <text x="394" y="359" text-anchor="middle" class="text mono small" fill="#e67700">r = H(root₀, root₁, …, rootᴮ₋₁)</text>
+
+  <path d="M394 378 C394 406 394 417 394 442" class="arrow"/>
+  <text x="28" y="436" class="text label" fill="#6741d9">③ Barycentric slices</text>
+  <rect x="90" y="464" width="300" height="52" fill="#e5dbff" stroke="#6741d9" class="bar"/>
+  <text x="240" y="497" text-anchor="middle" class="text mono small" fill="#6741d9">sL[j] = (rᴹ-1)/(r u⁻ʲ-1)</text>
+  <rect x="420" y="464" width="300" height="52" fill="#e5dbff" stroke="#6741d9" class="bar"/>
+  <text x="570" y="497" text-anchor="middle" class="text mono small" fill="#6741d9">sR[j] = -(rᴹ+1)/(r w⁻¹u⁻ʲ-1)</text>
+
+  <path d="M394 518 C394 548 394 564 394 590" class="arrow"/>
+  <text x="28" y="584" class="text label" fill="#2b8a3e">④ Repeat for each row</text>
+  <rect x="80" y="612" width="640" height="62" fill="#d3f9d8" stroke="#2b8a3e" class="bar"/>
+  <text x="400" y="650" text-anchor="middle" class="text mono small" fill="#2b8a3e">Σⱼ sL[j]·v₂ⱼ  =  Σⱼ sR[j]·v₂ⱼ₊₁</text>
+  <text x="775" y="646" class="text tiny">paid once per committed row</text>
+
+  <path d="M400 676 C400 706 400 722 400 750" class="arrow"/>
+  <rect x="180" y="766" width="440" height="58" fill="#f8f9fa" stroke="#495057" class="bar"/>
+  <text x="400" y="802" text-anchor="middle" class="text mono small">every row passes RS identity</text>
+</svg>

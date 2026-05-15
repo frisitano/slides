@@ -8,84 +8,292 @@ footer: 'Francesco Risitano · 2026'
 style: |
   section {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 24px;
+    font-size: 22px;
   }
+  section.construction { font-size: 17px; }
   h1 { color: #1a1a1a; }
   h2 { color: #2a4365; border-bottom: 2px solid #2a4365; padding-bottom: 6px; }
-  code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+  code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
   table { font-size: 0.85em; }
   table th { background: #2a4365; color: white; }
-  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .construction-grid {
+    display: grid;
+    grid-template-columns: 43% 57%;
+    gap: 1rem;
+    align-items: start;
+  }
+  .diagram img {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background: white;
+  }
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .latex { font-size: 0.73em; line-height: 1.17; }
+  .step { margin-bottom: 0.78rem; }
+  .step p { margin: 0 0 0.12rem; }
+  .step mjx-container { margin: 0.05rem 0 !important; }
+  .bench table { font-size: 0.55em; margin: 0.1rem 0 0; }
+  .impl {
+    margin-top: 0.2rem;
+    padding: 0.34rem 0.45rem;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 0.68em;
+    line-height: 1.28;
+  }
+  .impl a { color: #1c7ed6; }
+  .small { font-size: 0.72em; }
   .center { text-align: center; }
-  .center table { margin-left: auto; margin-right: auto; }
-  .small { font-size: 0.75em; }
 ---
 
 <!-- _class: lead -->
 
 # leanDA
 
-## PQ proofs of RS codes with leanVM
+## Post Quantum Proofs of RS codes with leanVM
 
 **Francesco Risitano**
 
 ---
 
-## The leanDA Construction
+<!-- _class: construction -->
 
-**Inputs:** $m$ codewords $c_1, …, c_m \in \mathbb{F}^n$ (one per row of the encoded blob).
+## Construction 1 — RLC + FRI Fold In Circuit
 
-**Three steps inside the circuit:**
+<div class="construction-grid">
 
-1. **Commit each row** → Merkle root $\text{com}_i$ via Poseidon2.
-2. **Derive RLC challenge** $r \in \mathbb{E}$ from $H(\text{com}_1, …, \text{com}_m)$. Combine row-wise in the **extension field** using powers of $r$:
-$$c^*[j] = \sum_{i=1}^{m} r^i \cdot c_i[j] \;\in\; \mathbb{E}$$
-3. **Run FRI folding inside the leanVM trace** on $c^*$ — $\log_2(d)$ rounds of degree halving until a constant. The constant assertion is what certifies *exact* RS membership.
+<div class="diagram">
 
----
+![RLC + FRI fold diagram](assets/rlc-fri-fold.svg)
 
-## Anatomy of a Proof
+</div>
 
-<div class="center">
+<div class="right-column">
 
-![h:560](assets/leanDA-batch-anatomy.png)
+<div class="latex">
 
+<div class="step">
+
+**1. Commit rows and sample the RLC challenge.** The transcript binds every row root before sampling $\rho$.
+
+$$
+D = H(\operatorname{root}(C_0),\ldots,\operatorname{root}(C_{m-1})),
+\qquad
+\rho = H(D)
+$$
+
+</div>
+
+<div class="step">
+
+**2. Build one extension-field aggregate codeword.** Every column is combined with powers of $\rho$.
+
+$$
+C^\star[j] = \sum_{i=0}^{m-1}\rho^i C_i[j]
+$$
+
+</div>
+
+<div class="step">
+
+**3. Fold the aggregate in the leanVM trace.** Each round halves the domain.
+
+$$
+C^{(t+1)}[j] =
+\frac{C^{(t)}[2j] + C^{(t)}[2j+1]}{2}
++ \beta_t
+\frac{C^{(t)}[2j] - C^{(t)}[2j+1]}{2x_j}
+$$
+
+</div>
+
+<div class="step">
+
+**4. Assert exact RS membership.** The final folded vector must be constant.
+
+$$
+C^{(\log n)}[0]=C^{(\log n)}[1]=\cdots
+$$
+
+</div>
+
+</div>
+
+<div class="bench">
+
+| benchmark | parameters | prove | message throughput | proof |
+|---|---:|---:|---:|---:|
+| leanDAS headline | $m=240,\ n=4096$, half-rate | 5.28 s | 364 KB/s | 356 KiB |
+
+</div>
+
+</div>
+
+</div>
+
+<div class="impl">
+Implementation: <a href="https://github.com/frisitano/leanDAS/blob/main/rust/crates/das-prover/circuit.py">circuit.py</a><br/>
+Run: <code>cargo run --release --bin leandas -- -m 240 -n 4096 --zkvm</code>
 </div>
 
 ---
 
-## Benchmarks — Message Throughput (KB/s) — Apple M2 Max
+<!-- _class: construction -->
 
-<div class="center">
+## Construction 2 — Barycentric Check Per Row
 
-| $m \;\backslash\; n$ | 64 | 256 | 1024 | 4096 |
-|---|---|---|---|---|
-| **1**   | 1.7 | 4.9 | 8.3 | 11.7 |
-| **4**   | 6.7 | 17.7 | 30.9 | 42.8 |
-| **16**  | 20.5 | 52.4 | 87.6 | 122.5 |
-| **64**  | 49.4 | 101.4 | 167.2 | 187.9 |
-| **128** | 59.6 | 117.3 | 192.8 | 164.9 |
-| **240** | 72.8 | 210.1 | **309.1** | **293.4** |
+<div class="construction-grid">
+
+<div class="diagram">
+
+![Barycentric row check diagram](assets/barycentric-per-row.svg)
 
 </div>
 
-**At $m{=}240,\, n{=}4096$:** ~1.92 MB systematic data per proof · **293 KB/s** throughput · 356 KB proof.
+<div class="right-column">
+
+<div class="latex">
+
+<div class="step">
+
+**1. Commit rows and sample the barycentric point.** The same challenge is used for all row checks.
+
+$$
+D = H(\operatorname{root}(C_0),\ldots,\operatorname{root}(C_{B-1})),
+\qquad r = \operatorname{Decode}_{\mathbb{E}}(D)
+$$
+
+</div>
+
+<div class="step">
+
+**2. Build the evens/odds barycentric slices.** For row domain roots $u=w^2$:
+
+$$
+s_L[j]=\frac{r^M-1}{r u^{-j}-1},
+\qquad
+s_R[j]=-\frac{r^M+1}{r w^{-1}u^{-j}-1}
+$$
+
+</div>
+
+<div class="step">
+
+**3. Check every row independently.** For $C_i=(v_0,\ldots,v_{2M-1})$:
+
+$$
+\sum_{j=0}^{M-1} s_L[j]\,v_{2j}
+=
+\sum_{j=0}^{M-1} s_R[j]\,v_{2j+1}
+$$
+
+</div>
+
+</div>
+
+<div class="bench">
+
+| blobs | bytecode | cycles | Poseidon16 | ExtOp | proof | throughput |
+|---:|---:|---:|---:|---:|---:|---:|
+| 8  | 59,560 | 131,254 | 81,920  | 180,236 | 316.09 KiB | 836.91 KiB/s |
+| 16 | 59,656 | 213,286 | 163,840 | 311,308 | 334.89 KiB | 930.65 KiB/s |
+| 32 | 59,848 | 377,350 | 327,680 | 573,452 | 351.21 KiB | 949.17 KiB/s |
+
+</div>
+
+</div>
+
+</div>
+
+<div class="impl">
+Implementation: <a href="https://github.com/leanEthereum/leanMultisig/blob/26d851afe7d53f1694057d29a0e8e36f51530f40/crates/lean-da/zkdsl_implem/lean_da.py">lean_da.py</a>, <a href="https://github.com/leanEthereum/leanMultisig/blob/26d851afe7d53f1694057d29a0e8e36f51530f40/crates/lean-da/zkdsl_implem/barycentric.py">barycentric.py</a><br/>
+Run: <code>cargo run --release -p lean-da -- --n-blobs 32</code>
+</div>
 
 ---
 
-## Optimisation — Low-Degree-Test Chip
+<!-- _class: construction -->
 
-**Idea:** replace inside-the-trace FRI folding with a dedicated **chip enforcing the row-RS annihilating polynomial** as a native AIR constraint.
+## Construction 3 — Systematic Hash + OOD Row + Barycentric Check
 
-For each row $v = (v_0, \ldots, v_{2m-1})$, the row-RS code has a parity-check identity with **parity-check coefficients** $c_j(r)$:
-$$\sum_{j=0}^{2m-1} c_j(r) \cdot v_j \;=\; 0 \qquad c_j(r) = \sum_{k=m}^{2m-1} r^{k-m} \cdot \omega_h^{-jk}$$
-This is the annihilating polynomial of the RS code's dual — degree 1 in $v$, degree $m{-}1$ in $r$.
+<div class="construction-grid">
 
-**One row per RS-validity check**
+<div class="diagram">
 
----
+![OOD row barycentric diagram](assets/ood-barycentric-row.svg)
 
-## Links
+</div>
 
-[github.com/frisitano/leanDAS](https://github.com/frisitano/leanDAS)
+<div class="right-column">
 
+<div class="latex">
+
+<div class="step">
+
+**1. Hash systematic prefixes and sample the row-axis OOD point.** Only the first $M$ natural evaluations are hashed per row.
+
+$$
+d_i = H(C_i[0..M)),\quad D=H(d_0,\ldots,d_{B-1}),\quad z=H(D)
+$$
+
+</div>
+
+<div class="step">
+
+**2. Compose the committed OOD aggregate row.** The public $\alpha_i$ are the scaled row-domain Lagrange coefficients at $z$.
+
+$$
+\alpha_i=\frac{z^B-1}{z h^{-i}-1},
+\qquad
+\operatorname{OOD}[j]=\sum_{i=0}^{B-1}\alpha_i C_i[j]
+$$
+
+</div>
+
+<div class="step">
+
+**3. Commit the OOD row, then sample the LDT point.** The challenge comes after `ood_root`.
+
+$$
+r = H(D,z,\operatorname{root}(\operatorname{OOD}))
+$$
+
+</div>
+
+<div class="step">
+
+**4. Run one barycentric row check.** The evens/odds identity is paid once on $\operatorname{OOD}$.
+
+$$
+\sum_{j=0}^{M-1} s_L[j]\,\operatorname{OOD}[2j]
+=
+\sum_{j=0}^{M-1} s_R[j]\,\operatorname{OOD}[2j+1]
+$$
+
+</div>
+
+</div>
+
+<div class="bench">
+
+| variant | blobs | bytecode | cycles | Poseidon16 | ExtOp | proof | throughput |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| OOD + barycentric | 8  | 223,821 | 317,138 | 51,203  | 180,254 | 314.47 KiB | 925.14 KiB/s |
+| OOD + barycentric | 32 | 224,399 | 690,196 | 174,083 | 573,520 | 340.93 KiB | 1,068.06 KiB/s |
+
+</div>
+
+</div>
+
+</div>
+
+<div class="impl">
+Implementation: <a href="file:///Users/f/dev/ethereum/leanMultisig/crates/lean-da/zkdsl_implem/lean_da_ood_tiled.py">lean_da_ood_tiled.py</a>, <a href="file:///Users/f/dev/ethereum/leanMultisig/crates/lean-da/zkdsl_implem/ood_barycentric.py">ood_barycentric.py</a><br/>
+Run: <code>cargo run --release -p lean-da -- --construction ood-row-tiled --n-blobs 32</code>
+</div>

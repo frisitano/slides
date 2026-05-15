@@ -1,0 +1,17 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "codex-generated",
+  "elements": [
+    {"id":"title","type":"text","x":80,"y":10,"width":660,"height":35,"text":"Systematic hash -> OOD row -> barycentric LDT","fontSize":28,"fontFamily":1,"textAlign":"center","strokeColor":"#1e1e1e","backgroundColor":"transparent"},
+    {"id":"sys","type":"rectangle","x":28,"y":72,"width":184,"height":84,"backgroundColor":"#f8f9fa","strokeColor":"#495057","strokeWidth":2,"label":{"text":"sys(C_i)\nfirst M evaluations"}},
+    {"id":"digest","type":"rectangle","x":272,"y":72,"width":148,"height":84,"backgroundColor":"#fff3bf","strokeColor":"#f59f00","strokeWidth":2,"label":{"text":"d_i -> D\npublic digest"}},
+    {"id":"z","type":"rectangle","x":480,"y":72,"width":124,"height":84,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"z\nrow-axis OOD"}},
+    {"id":"ood","type":"rectangle","x":284,"y":208,"width":200,"height":88,"backgroundColor":"#d3f9d8","strokeColor":"#2b8a3e","strokeWidth":2,"label":{"text":"OOD[j]\nsum alpha_i(z) C_i[j]"}},
+    {"id":"root","type":"rectangle","x":560,"y":208,"width":174,"height":88,"backgroundColor":"#fff3bf","strokeColor":"#f59f00","strokeWidth":2,"label":{"text":"ood_root\ncommit aggregate"}},
+    {"id":"r","type":"rectangle","x":402,"y":326,"width":183,"height":70,"backgroundColor":"#d0ebff","strokeColor":"#1c7ed6","strokeWidth":2,"label":{"text":"r = H(D,z,root)\nafter commitment"}},
+    {"id":"ldt","type":"rectangle","x":70,"y":298,"width":230,"height":84,"backgroundColor":"#ffe3e3","strokeColor":"#e03131","strokeWidth":2,"label":{"text":"barycentric LDT\npaid once on OOD row"}}
+  ],
+  "appState": {"viewBackgroundColor": "#ffffff"},
+  "files": {}
+}
