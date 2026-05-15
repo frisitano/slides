@@ -15,11 +15,11 @@
     </style>
   </defs>
 
-  <text x="494" y="40" text-anchor="middle" class="text" style="font-size:32px">Systematic hash → OOD row → barycentric check</text>
+  <text x="494" y="40" text-anchor="middle" class="text" style="font-size:32px">Systematic hash → row-hash OOD row → barycentric check</text>
   <rect x="18" y="70" width="742" height="765" class="dash"/>
   <text x="24" y="62" class="text small" fill="#495057">ZKVM Circuit</text>
   <text x="775" y="94" class="text tiny">Private witness: natural-order rows</text>
-  <text x="775" y="122" class="text tiny">Public: dᵢ, D, z, αᵢ, ood_root</text>
+  <text x="775" y="122" class="text tiny">Public: dᵢ, D, z, αᵢ=Lᵢˣ(z), ood_root</text>
 
   <text x="28" y="118" class="text label" fill="#1971c2">① Hash systematic prefixes</text>
   <text x="66" y="153" class="text tiny" fill="#1971c2">C₀</text>
@@ -33,10 +33,11 @@
   <text x="400" y="239" text-anchor="middle" class="text mono tiny" fill="#1971c2">C₂[0] C₂[1] ··· C₂[M-1]  →  d₂</text>
   <path d="M400 252 C400 270 400 279 400 294" class="arrow"/>
   <rect x="150" y="310" width="500" height="48" fill="#fff3bf" stroke="#f59f00" class="bar"/>
-  <text x="400" y="341" text-anchor="middle" class="text mono small" fill="#e67700">D = H(d₀, …, dᴮ₋₁),   z = H(D)</text>
+  <text x="400" y="331" text-anchor="middle" class="text mono tiny" fill="#e67700">D = H(d₀, …, dᴮ₋₁),   xᵢ = H(D,dᵢ,i)</text>
+  <text x="400" y="350" text-anchor="middle" class="text mono tiny" fill="#e67700">z = H(D, "ood")</text>
 
   <path d="M400 360 C400 382 400 392 400 412" class="arrow"/>
-  <text x="28" y="404" class="text label" fill="#2b8a3e">② Compose OOD row</text>
+  <text x="28" y="404" class="text label" fill="#2b8a3e">② Compose hash-domain OOD row</text>
   <text x="72" y="452" class="text small" fill="#e67700">α₀ ·</text>
   <rect x="122" y="426" width="610" height="36" fill="#d0ebff" stroke="#1971c2" class="bar"/>
   <text x="426" y="450" text-anchor="middle" class="text mono tiny" fill="#1971c2">C₀[0] C₀[1] C₀[2] ··· C₀[2M-1]</text>
@@ -51,8 +52,9 @@
   <line x1="122" y1="634" x2="732" y2="634" stroke="#1e1e1e" stroke-width="3"/>
   <text x="55" y="644" class="text small">=</text>
   <rect x="122" y="656" width="610" height="42" fill="#d3f9d8" stroke="#2b8a3e" class="bar"/>
-  <text x="426" y="684" text-anchor="middle" class="text mono small" fill="#2b8a3e">OOD[j] = Σᵢ αᵢ(z) · Cᵢ[j]</text>
-  <text x="775" y="682" class="text tiny">αᵢ = (zᴮ-1)/(z h⁻ⁱ-1)</text>
+  <text x="426" y="684" text-anchor="middle" class="text mono small" fill="#2b8a3e">OOD[j] = Σᵢ Lᵢˣ(z) · Cᵢ[j]</text>
+  <text x="775" y="664" class="text tiny">xᵢ comes from row hash dᵢ</text>
+  <text x="775" y="692" class="text tiny">column check: deg g≤d, g(z)=OOD[j]</text>
 
   <path d="M426 700 C426 718 426 726 426 744" class="arrow"/>
   <text x="28" y="736" class="text label" fill="#6741d9">③ Commit then check once</text>

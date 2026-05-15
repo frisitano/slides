@@ -236,20 +236,25 @@ Run: <code>cargo run --release -p lean-da -- --n-blobs 32</code>
 
 <div class="step">
 
-**1. Hash systematic prefixes and sample the row-axis OOD point.** Only the first $M$ natural evaluations are hashed per row.
+**1. Hash systematic prefixes, then bind the row axis.** The row hash fixes both the row commitment and its interpolation coordinate.
 
 $$
-d_i = H(C_i[0..M)),\quad D=H(d_0,\ldots,d_{B-1}),\quad z=H(D)
+d_i = H(C_i[0..M)),\quad D=H(d_0,\ldots,d_{B-1})
+$$
+
+$$
+x_i=H(D,d_i,i),\qquad z=H(D,\textsf{ood})
 $$
 
 </div>
 
 <div class="step">
 
-**2. Compose the committed OOD aggregate row.** The public $\alpha_i$ are the scaled row-domain Lagrange coefficients at $z$.
+**2. Compose the committed OOD aggregate row.** The public $\alpha_i$ are arbitrary-domain Lagrange coefficients over the row-hash points.
 
 $$
-\alpha_i=\frac{z^B-1}{z h^{-i}-1},
+\alpha_i=L_i^{\mathbf{x}}(z)
+=\prod_{k\ne i}\frac{z-x_k}{x_i-x_k},
 \qquad
 \operatorname{OOD}[j]=\sum_{i=0}^{B-1}\alpha_i C_i[j]
 $$
@@ -258,17 +263,21 @@ $$
 
 <div class="step">
 
-**3. Commit the OOD row, then sample the LDT point.** The challenge comes after `ood_root`.
+**3. Open a sampled full column against the OOD row.** The verifier checks the provided column and $\operatorname{OOD}[j]$ lie on one bounded-degree polynomial.
 
 $$
-r = H(D,z,\operatorname{root}(\operatorname{OOD}))
+\deg g_j\le d,\qquad g_j(x_i)=c_i,\qquad g_j(z)=\operatorname{OOD}[j]
 $$
 
 </div>
 
 <div class="step">
 
-**4. Run one barycentric row check.** The evens/odds identity is paid once on $\operatorname{OOD}$.
+**4. Commit the OOD row and run one barycentric row check.** The evens/odds identity is paid once on $\operatorname{OOD}$.
+
+$$
+r = H(D,z,\operatorname{root}(\operatorname{OOD}))
+$$
 
 $$
 \sum_{j=0}^{M-1} s_L[j]\,\operatorname{OOD}[2j]
@@ -282,10 +291,14 @@ $$
 
 <div class="bench">
 
-| variant | blobs | bytecode | cycles | Poseidon16 | ExtOp | proof | throughput |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| OOD + barycentric | 8  | 223,821 | 317,138 | 51,203  | 180,254 | 314.47 KiB | 925.14 KiB/s |
-| OOD + barycentric | 32 | 224,399 | 690,196 | 174,083 | 573,520 | 340.93 KiB | 1,068.06 KiB/s |
+| blobs | bytecode | cycles | Poseidon16 | ExtOp | proof | throughput |
+|---:|---:|---:|---:|---:|---:|---:|
+| 48 | 287,985 | 1,002,572 | 256,147 | 840,156 | 339.75 KiB | 1,532.29 KiB/s |
+| 49 | 290,649 | 1,020,766 | 261,270 | 856,733 | 339.96 KiB | **1,570.01 KiB/s** |
+| 50 | 293,367 | 1,039,014 | 266,393 | 873,314 | 364.55 KiB | 1,343.15 KiB/s |
+| 51 | 296,139 | 1,057,316 | 271,516 | 889,899 | 336.55 KiB | 792.30 KiB/s |
+
+<span class="small">Trace cliff: 49→50 moves Poseidon to $2^{18}$; 50→51 moves execution to $2^{20}$ and WHIR to 28 vars.</span>
 
 </div>
 
@@ -295,5 +308,5 @@ $$
 
 <div class="impl">
 Implementation: <a href="https://github.com/frisitano/leanMultisig/blob/feat/systematic-hash-ood-barycentric/crates/lean-da/zkdsl_implem/lean_da_ood_tiled.py">lean_da_ood_tiled.py</a>, <a href="https://github.com/frisitano/leanMultisig/blob/feat/systematic-hash-ood-barycentric/crates/lean-da/zkdsl_implem/ood_barycentric.py">ood_barycentric.py</a><br/>
-Run: <code>cargo run --release -p lean-da -- --construction ood-row-tiled --n-blobs 32</code>
+Run: <code>cargo run --release -p lean-da -- --construction ood-row-tiled --n-blobs 49 --tracing</code>
 </div>
