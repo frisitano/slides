@@ -353,7 +353,7 @@ Run: <code>cargo run --release -p lean-da -- --construction ood-row-tiled --n-bl
 
 <!-- _class: construction construction4 -->
 
-## Construction 4 — Column Commitments + Row LDT
+## Construction 4 — Systematic Row Digests + Column Merkle Commitments + Row Barycentric Checks + Cell-Level Sampling
 
 <div class="construction-grid diagram-heavy">
 
