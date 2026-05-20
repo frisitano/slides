@@ -4,6 +4,8 @@ theme: gaia
 class: lead
 paginate: true
 backgroundColor: #fff
+title: Optional Proofs Progress Update — May 13, 2026
+category: EIP-8025
 ---
 
 <!-- Slide 1: Title -->

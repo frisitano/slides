@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1040" width="1600" height="1040" class="excalidraw-svg" role="img">
+  <rect width="1600" height="1040" fill="#ffffff"/>
+<rect x="52" y="54" width="1512" height="456" rx="22" fill="#0f172a" opacity="0.08"/><rect x="44" y="44" width="1512" height="456" rx="22" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="900" fill="#0f172a"><tspan x="74" y="94" text-anchor="start">Generation path</tspan></text>
+<rect x="74" y="140" width="420" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="74" y="140" width="420" height="66" rx="16" fill="#0f172a"/>
+<rect x="74" y="176" width="420" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="284" y="185" text-anchor="middle">Beacon node</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="780" fill="#0f172a"><tspan x="108" y="244" text-anchor="start">new payload</tspan><tspan x="108" y="286.84" text-anchor="start">forkchoice update</tspan><tspan x="108" y="329.68" text-anchor="start">proof request</tspan></text>
+<rect x="560" y="140" width="430" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="560" y="140" width="430" height="66" rx="16" fill="#0f172a"/>
+<rect x="560" y="176" width="430" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="775" y="185" text-anchor="middle">ProofEngine</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="900" fill="#0f172a"><tspan x="590" y="232" text-anchor="start">notify_new_payload</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="25" font-weight="740" fill="#475569"><tspan x="590" y="272" text-anchor="start">notify_forkchoice_updated</tspan></text>
+<line x1="590" y1="328" x2="960" y2="328" stroke="#cbd5e1" stroke-width="2"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="900" fill="#0f172a"><tspan x="590" y="362" text-anchor="start">request_proofs</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="25" font-weight="740" fill="#475569"><tspan x="590" y="402" text-anchor="start">NewPayloadRequest +</tspan><tspan x="590" y="429" text-anchor="start">ProofAttributes -&gt; Root</tspan></text>
+<rect x="1080" y="140" width="466" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="1080" y="140" width="466" height="66" rx="16" fill="#0f172a"/>
+<rect x="1080" y="176" width="466" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="1313" y="185" text-anchor="middle">Proof node client</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#0f172a"><tspan x="1112" y="232" text-anchor="start">request_proofs</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="26" font-weight="740" fill="#475569"><tspan x="1112" y="272" text-anchor="start">SszBody +</tspan><tspan x="1112" y="300.08" text-anchor="start">ProofAttributes -&gt; Hash256</tspan></text>
+<line x1="1112" y1="328" x2="1514" y2="328" stroke="#cbd5e1" stroke-width="2"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="27" font-weight="900" fill="#0f172a"><tspan x="1112" y="362" text-anchor="start">subscribe_proof_events</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="26" font-weight="740" fill="#475569"><tspan x="1112" y="402" text-anchor="start">FilterRoot -&gt;</tspan><tspan x="1112" y="430.08" text-anchor="start">Stream&lt;ProofEvent&gt;</tspan></text>
+<g>
+  <line x1="494" y1="292" x2="560" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="536" y1="300.50" x2="560" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="536" y1="283.50" x2="560" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+<g>
+  <line x1="990" y1="292" x2="1080" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1056" y1="300.50" x2="1080" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1056" y1="283.50" x2="1080" y2="292" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+<rect x="52" y="550" width="1512" height="456" rx="22" fill="#0f172a" opacity="0.08"/><rect x="44" y="540" width="1512" height="456" rx="22" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="900" fill="#0f172a"><tspan x="74" y="590" text-anchor="start">Verification path</tspan></text>
+<rect x="74" y="636" width="420" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="74" y="636" width="420" height="66" rx="16" fill="#0f172a"/>
+<rect x="74" y="672" width="420" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="284" y="681" text-anchor="middle">Beacon node</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="780" fill="#0f172a"><tspan x="108" y="740" text-anchor="start">incoming proof</tspan><tspan x="108" y="782.84" text-anchor="start">gossip validation</tspan><tspan x="108" y="825.68" text-anchor="start">proof sync backfill</tspan></text>
+<rect x="560" y="636" width="430" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="560" y="636" width="430" height="66" rx="16" fill="#0f172a"/>
+<rect x="560" y="672" width="430" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="775" y="681" text-anchor="middle">ProofEngine</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="27" font-weight="900" fill="#0f172a"><tspan x="590" y="728" text-anchor="start">verify_execution_proof</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="25" font-weight="740" fill="#475569"><tspan x="590" y="768" text-anchor="start">ExecutionProof -&gt; bool</tspan></text>
+<line x1="590" y1="824" x2="960" y2="824" stroke="#cbd5e1" stroke-width="2"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="26" font-weight="760" fill="#475569"><tspan x="590" y="860" text-anchor="start">tracks verified proofs</tspan><tspan x="590" y="888.08" text-anchor="start">keeps CL proof-system</tspan><tspan x="590" y="916.16" text-anchor="start">agnostic</tspan></text>
+<rect x="1080" y="636" width="466" height="304" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+<rect x="1080" y="636" width="466" height="66" rx="16" fill="#0f172a"/>
+<rect x="1080" y="672" width="466" height="30" fill="#0f172a"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="900" fill="#ffffff"><tspan x="1313" y="681" text-anchor="middle">Proof node client</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#0f172a"><tspan x="1112" y="728" text-anchor="start">verify_proof</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="26" font-weight="740" fill="#475569"><tspan x="1112" y="768" text-anchor="start">Root + ProofType +</tspan><tspan x="1112" y="796.08" text-anchor="start">ProofData -&gt; ProofStatus</tspan></text>
+<line x1="1112" y1="824" x2="1514" y2="824" stroke="#cbd5e1" stroke-width="2"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#0f172a"><tspan x="1112" y="858" text-anchor="start">get_proof</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="26" font-weight="740" fill="#475569"><tspan x="1112" y="898" text-anchor="start">Root + ProofType</tspan><tspan x="1112" y="926.08" text-anchor="start">-&gt; Bytes</tspan></text>
+<g>
+  <line x1="494" y1="788" x2="560" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="536" y1="796.50" x2="560" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="536" y1="779.50" x2="560" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+<g>
+  <line x1="990" y1="788" x2="1080" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1056" y1="796.50" x2="1080" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1056" y1="779.50" x2="1080" y2="788" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+</svg>

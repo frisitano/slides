@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-labelledby="title desc">
+  <title id="title">LeanAIR minimal PQ DA proving pipeline</title>
+  <desc id="desc">Source diagram for the LeanAIR prover pipeline for Reed-Solomon data-availability commitments.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 12; }
+      .blue { fill: #dbeafe; stroke: #1d4ed8; }
+      .green { fill: #dcfce7; stroke: #15803d; }
+      .amber { fill: #fef3c7; stroke: #b45309; }
+      .rose { fill: #ffe4e6; stroke: #be123c; }
+      .slate { fill: #e2e8f0; stroke: #475569; }
+      .title { font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label { font: 700 19px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .mono { font: 600 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+      .arrow { stroke: #1f2937; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .thin { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1280" height="620"/>
+  <text class="title" x="48" y="52">LeanAIR: proving the RS data-availability commitment directly</text>
+
+  <rect class="box blue" x="60" y="105" width="220" height="150"/>
+  <text class="label" x="82" y="140">Row codewords</text>
+  <text class="small" x="82" y="172">n RS rows</text>
+  <text class="small" x="82" y="197">length 2M each</text>
+  <text class="mono" x="82" y="228">C_i[0..2M-1]</text>
+
+  <rect class="box green" x="355" y="90" width="260" height="180"/>
+  <text class="label" x="380" y="128">Dedicated Poseidon</text>
+  <text class="label" x="380" y="153">hash table</text>
+  <text class="small" x="380" y="187">cell hashes</text>
+  <text class="small" x="380" y="212">row chains</text>
+  <text class="small" x="380" y="237">column Merkle trees</text>
+
+  <rect class="box amber" x="685" y="90" width="245" height="180"/>
+  <text class="label" x="710" y="128">Global polynomial</text>
+  <text class="small" x="710" y="165">flatten table columns</text>
+  <text class="mono" x="710" y="195">col * rows + row</text>
+  <text class="small" x="710" y="230">commit with WHIR</text>
+
+  <rect class="box rose" x="1000" y="90" width="220" height="180"/>
+  <text class="label" x="1025" y="128">Verifier</text>
+  <text class="small" x="1025" y="165">samples challenges</text>
+  <text class="small" x="1025" y="195">checks sumcheck</text>
+  <text class="small" x="1025" y="225">checks WHIR openings</text>
+
+  <path class="arrow" d="M280 180 H350"/>
+  <path class="arrow" d="M615 180 H680"/>
+  <path class="arrow" d="M930 180 H995"/>
+
+  <rect class="box slate" x="355" y="340" width="865" height="190"/>
+  <text class="label" x="382" y="378">Batched claims over the committed table</text>
+
+  <rect class="box" x="390" y="410" width="215" height="80"/>
+  <text class="label" x="414" y="440">1. Poseidon AIR</text>
+  <text class="small" x="414" y="468">round constraints</text>
+
+  <rect class="box" x="650" y="410" width="230" height="80"/>
+  <text class="label" x="674" y="440">2. Dense links</text>
+  <text class="small" x="674" y="468">incremental cell chain</text>
+
+  <rect class="box" x="925" y="410" width="250" height="80"/>
+  <text class="label" x="949" y="440">3. Sparse links + LDT</text>
+  <text class="small" x="949" y="468">hash schedule and parity</text>
+
+  <path class="thin" d="M485 270 V338"/>
+  <path class="thin" d="M808 270 V338"/>
+  <path class="thin" d="M1110 270 V338"/>
+</svg>

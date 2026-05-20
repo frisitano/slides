@@ -4,6 +4,8 @@ theme: gaia
 class: lead
 paginate: true
 backgroundColor: #fff
+title: Optional Proofs Progress Update — February 11, 2026
+category: EIP-8025
 ---
 
 <!-- Load Mermaid.js for diagram rendering -->
@@ -52,7 +54,7 @@ section pre.mermaid svg foreignObject {
 </style>
 
 <!-- Slide 1: Title -->
-# Optional Proofs — Consensus Layer Integration Update 1
+# Optional Proofs — Progress Update
 
 **Breakout Call, February 11, 2026**
 

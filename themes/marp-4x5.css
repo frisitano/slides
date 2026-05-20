@@ -1,0 +1,15 @@
+/*!
+ * @theme marp-4x5
+ *
+ * Generic social portrait deck canvas.
+ * Marpit requires slide size to be defined in theme CSS so the
+ * generated SVG viewport matches the designed slide dimensions.
+ */
+@import 'default';
+
+/* @size social-portrait 1080px 1240px */
+
+section {
+  width: 1080px;
+  height: 1240px;
+}

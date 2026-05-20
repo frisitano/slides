@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1040" width="1600" height="1040" role="img">
+  <defs>
+    <style>
+      .small { font-feature-settings: "tnum" 1; }
+    </style>
+  </defs>
+  <rect width="1600" height="1040" fill="#f8fafc"/>
+  <text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="44" font-weight="900" fill="#0f172a"><tspan x="60" y="62" text-anchor="start">Why standardize the EL boundary?</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="700" fill="#475569"><tspan x="60" y="112" text-anchor="start">Different prover stacks can implement different guests while sharing one input/output test surface.</tspan></text>
+<rect x="68" y="165" width="390" height="650" rx="22" fill="#0f172a" opacity="0.08"/><rect x="60" y="155" width="390" height="650" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="900" fill="#0f172a"><tspan x="88" y="214" text-anchor="start">Many prover stacks</tspan></text>
+<rect x="88" y="270" width="322" height="88" rx="16" fill="#f8fafc" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="900" fill="#0f172a"><tspan x="110" y="310" text-anchor="start">Guest A</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="760" fill="#475569"><tspan x="110" y="340" text-anchor="start">zkVM / proof system A</tspan></text>
+<rect x="88" y="402" width="322" height="88" rx="16" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="900" fill="#0f172a"><tspan x="110" y="442" text-anchor="start">Guest B</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="760" fill="#475569"><tspan x="110" y="472" text-anchor="start">zkVM / proof system B</tspan></text>
+<rect x="88" y="534" width="322" height="88" rx="16" fill="#f8fafc" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="900" fill="#0f172a"><tspan x="110" y="574" text-anchor="start">Guest C</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="760" fill="#475569"><tspan x="110" y="604" text-anchor="start">zkVM / proof system C</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="23" font-weight="750" fill="#475569"><tspan x="88" y="704" text-anchor="start">Without a common boundary,</tspan><tspan x="88" y="731.14" text-anchor="start">each stack needs bespoke</tspan><tspan x="88" y="758.28" text-anchor="start">input assembly libraries.</tspan></text>
+<g stroke-linecap="round">
+  <line x1="470" y1="480" x2="515" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="491" y1="488.50" x2="515" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="491" y1="471.50" x2="515" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+<rect x="543" y="165" width="535" height="650" rx="22" fill="#0f172a" opacity="0.08"/><rect x="535" y="155" width="535" height="650" rx="22" fill="#0f172a" stroke="#0f172a" stroke-width="4"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="38" font-weight="950" fill="#ffffff"><tspan x="573" y="222" text-anchor="start">Stable boundary</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="23" font-weight="750" fill="#cbd5e1"><tspan x="573" y="266" text-anchor="start">shared contract</tspan><tspan x="573" y="290.84000000000003" text-anchor="start">every guest must implement</tspan></text>
+<rect x="573" y="320" width="459" height="108" rx="16" fill="#ffffff" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="950" fill="#0f172a"><tspan x="595" y="362" text-anchor="start">StatelessInput</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="740" fill="#475569"><tspan x="595" y="394" text-anchor="start">payload + witness + chain/fork config</tspan></text>
+<rect x="573" y="465" width="459" height="108" rx="16" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="950" fill="#0f172a"><tspan x="595" y="507" text-anchor="start">Guest semantics</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="740" fill="#475569"><tspan x="595" y="539" text-anchor="start">validate input, run STF, commit result</tspan></text>
+<rect x="573" y="610" width="459" height="108" rx="16" fill="#ffffff" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="950" fill="#0f172a"><tspan x="595" y="652" text-anchor="start">Public result</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="740" fill="#475569"><tspan x="595" y="684" text-anchor="start">NewPayloadRequestRoot, SuccessBit,</tspan><tspan x="595" y="705.6" text-anchor="start">ChainConfig</tspan></text>
+<g stroke-linecap="round">
+  <line x1="1090" y1="480" x2="1182" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1158" y1="488.50" x2="1182" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1158" y1="471.50" x2="1182" y2="480" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+</g>
+<rect x="1213" y="165" width="335" height="650" rx="22" fill="#0f172a" opacity="0.08"/><rect x="1205" y="155" width="335" height="650" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="34" font-weight="900" fill="#0f172a"><tspan x="1237" y="214" text-anchor="start">execution-specs</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="750" fill="#475569"><tspan x="1237" y="252" text-anchor="start">Amsterdam fork tests</tspan></text>
+<rect x="1217" y="310" width="310" height="62" rx="18" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/><text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="850" fill="#0f172a"><tspan x="1235" y="345" text-anchor="start">valid payload cases</tspan></text>
+<rect x="1217" y="402" width="310" height="62" rx="18" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/><text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="850" fill="#0f172a"><tspan x="1235" y="437" text-anchor="start">invalid input cases</tspan></text>
+<rect x="1217" y="494" width="310" height="62" rx="18" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/><text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="23" font-weight="850" fill="#0f172a"><tspan x="1235" y="529" text-anchor="start">fork / ChainConfig cases</tspan></text>
+<rect x="1217" y="586" width="310" height="62" rx="18" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/><text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="850" fill="#0f172a"><tspan x="1235" y="621" text-anchor="start">SSZ + host assembly</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" font-weight="750" fill="#475569"><tspan x="1237" y="692" text-anchor="start">Input/output tests target</tspan><tspan x="1237" y="717.96" text-anchor="start">the shared boundary,</tspan><tspan x="1237" y="743.92" text-anchor="start">not one stack.</tspan></text>
+<rect x="68" y="880" width="460" height="120" rx="20" fill="#0f172a" opacity="0.08"/><rect x="60" y="870" width="460" height="120" rx="20" fill="#ffffff" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#0f172a"><tspan x="88" y="931" text-anchor="start">reduces prover complexity</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="750" fill="#475569"><tspan x="88" y="968" text-anchor="start">one witness/input format</tspan></text>
+<rect x="573" y="880" width="460" height="120" rx="20" fill="#0f172a" opacity="0.08"/><rect x="565" y="870" width="460" height="120" rx="20" fill="#0f172a" stroke="#0f172a" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#ffffff"><tspan x="593" y="931" text-anchor="start">enables interop</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="750" fill="#cbd5e1"><tspan x="593" y="968" text-anchor="start">multiple guests, same contract</tspan></text>
+<rect x="1078" y="880" width="460" height="120" rx="20" fill="#0f172a" opacity="0.08"/><rect x="1070" y="870" width="460" height="120" rx="20" fill="#ffffff" stroke="#dbe4ee" stroke-width="3"/>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="900" fill="#0f172a"><tspan x="1098" y="931" text-anchor="start">input/output test</tspan></text>
+<text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="750" fill="#475569"><tspan x="1098" y="968" text-anchor="start">valid + invalid conformance cases</tspan></text>
+</svg>

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="780" viewBox="0 0 1280 780" role="img" aria-labelledby="title desc">
+  <title id="title">LeanAIR dedicated Poseidon trace chip</title>
+  <desc id="desc">High-level diagram of the LeanAIR Poseidon trace chip, showing row bands, virtual links, public input constraints, WHIR commitment, and row parity wiring.</desc>
+  <defs>
+    <linearGradient id="chipGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="glassGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.86"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrowSlate" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15803d"/>
+    </marker>
+    <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b45309"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 30px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 16px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .label { font: 700 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .tiny { font: 600 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; letter-spacing: 0.02em; }
+      .mono { font: 650 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+      .chip { fill: url(#chipGradient); stroke: #334155; stroke-width: 2.5; rx: 22; filter: url(#shadow); }
+      .lane { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.3; rx: 12; }
+      .bandCell { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.7; rx: 11; }
+      .bandRow { fill: #dcfce7; stroke: #15803d; stroke-width: 1.7; rx: 11; }
+      .bandRoot { fill: #fef3c7; stroke: #b45309; stroke-width: 1.7; rx: 11; }
+      .bandColumn { fill: #fce7f3; stroke: #be185d; stroke-width: 1.7; rx: 11; }
+      .bandFinal { fill: #e0e7ff; stroke: #4338ca; stroke-width: 1.7; rx: 11; }
+      .callout { fill: url(#glassGradient); stroke: #94a3b8; stroke-width: 1.6; rx: 18; filter: url(#shadow); }
+      .calloutBlue { stroke: #2563eb; }
+      .calloutGreen { stroke: #15803d; }
+      .calloutAmber { stroke: #b45309; }
+      .calloutRose { stroke: #be185d; }
+      .calloutIndigo { stroke: #4338ca; }
+      .arrow { fill: none; stroke: #334155; stroke-width: 2.2; marker-end: url(#arrowSlate); }
+      .arrowBlue { fill: none; stroke: #2563eb; stroke-width: 2.2; marker-end: url(#arrowBlue); }
+      .arrowGreen { fill: none; stroke: #15803d; stroke-width: 2.2; marker-end: url(#arrowGreen); }
+      .arrowAmber { fill: none; stroke: #b45309; stroke-width: 2.2; marker-end: url(#arrowAmber); }
+      .virtual { fill: none; stroke: #7c3aed; stroke-width: 2; stroke-dasharray: 7 7; marker-end: url(#arrowSlate); opacity: 0.85; }
+      .gridLine { stroke: #cbd5e1; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="780"/>
+  <text class="title" x="56" y="58">LeanAIR Poseidon trace chip</text>
+  <text class="subtitle" x="56" y="86">One deterministic hash trace; local AIR checks rows, virtual claims wire the public commitment and row-code test.</text>
+
+  <rect class="callout calloutBlue" x="58" y="128" width="264" height="136"/>
+  <text class="label" x="86" y="166">Committed data</text>
+  <text class="small" x="86" y="196">RS rows split into cells</text>
+  <text class="mono" x="86" y="224">cell limbs -> q[i,j]</text>
+
+  <rect class="callout calloutGreen" x="58" y="306" width="264" height="144"/>
+  <text class="label" x="86" y="344">Row parity wiring</text>
+  <text class="small" x="86" y="374">barycentric LDT reads the</text>
+  <text class="small" x="86" y="397">same limbs used by Cell rows</text>
+  <text class="mono" x="86" y="425">C_i[t].limb_k -> input slot</text>
+
+  <rect class="callout calloutAmber" x="58" y="500" width="264" height="128"/>
+  <text class="label" x="86" y="538">WHIR opening point</text>
+  <text class="small" x="86" y="568">commit all trace columns as</text>
+  <text class="small" x="86" y="591">one global polynomial</text>
+
+  <rect class="chip" x="382" y="118" width="514" height="572"/>
+  <text class="label" x="416" y="158">Dedicated Poseidon trace</text>
+  <text class="tiny" x="416" y="182">PUBLIC ROW SCHEDULE</text>
+
+  <rect class="lane" x="420" y="208" width="438" height="52"/>
+  <line class="gridLine" x1="560" y1="208" x2="560" y2="260"/>
+  <line class="gridLine" x1="706" y1="208" x2="706" y2="260"/>
+  <text class="tiny" x="454" y="240">inputs</text>
+  <text class="tiny" x="600" y="240">Poseidon round state</text>
+  <text class="tiny" x="746" y="240">outputs</text>
+
+  <rect class="bandCell" x="420" y="286" width="438" height="68"/>
+  <text class="label" x="448" y="317">Cell hash rows</text>
+  <text class="mono" x="448" y="340">H_chain(cell limbs) -> q[i,j]</text>
+
+  <rect class="bandRow" x="420" y="370" width="438" height="60"/>
+  <text class="label" x="448" y="405">Systematic row chain</text>
+  <text class="mono" x="682" y="405">q[i,0..sys] -> rowCommit_i</text>
+
+  <rect class="bandRoot" x="420" y="446" width="438" height="58"/>
+  <text class="label" x="448" y="481">Row root chain</text>
+  <text class="mono" x="682" y="481">rowCommit_i -> R_rows</text>
+
+  <rect class="bandColumn" x="420" y="520" width="438" height="60"/>
+  <text class="label" x="448" y="555">Column Merkle rows</text>
+  <text class="mono" x="682" y="555">q[*,j] -> col_j</text>
+
+  <rect class="bandColumn" x="420" y="596" width="438" height="48"/>
+  <text class="label" x="448" y="627">Column-root tree</text>
+  <text class="mono" x="682" y="627">col_j -> R_col</text>
+
+  <rect class="bandFinal" x="420" y="658" width="438" height="46"/>
+  <text class="label" x="448" y="688">Final root row</text>
+  <text class="mono" x="682" y="688">D = H(R_rows, R_col)</text>
+
+  <path class="arrowBlue" d="M322 198 C348 198 350 318 418 318"/>
+  <path class="arrowGreen" d="M322 386 C360 386 355 320 418 320"/>
+  <path class="arrowAmber" d="M322 566 C350 566 350 636 418 636"/>
+
+  <path class="virtual" d="M858 320 C922 322 922 398 858 398"/>
+  <path class="virtual" d="M858 320 C938 336 938 550 858 550"/>
+  <path class="virtual" d="M858 398 C916 408 916 476 858 476"/>
+  <path class="virtual" d="M858 476 C930 498 930 680 858 680"/>
+  <path class="virtual" d="M858 550 C916 558 916 620 858 620"/>
+  <path class="virtual" d="M858 620 C916 628 916 680 858 680"/>
+  <text class="label" x="906" y="498">virtual links</text>
+  <path class="arrowGreen" d="M860 682 C914 682 924 684 966 684"/>
+
+  <rect class="callout calloutIndigo" x="966" y="130" width="258" height="118"/>
+  <text class="label" x="994" y="168">Local AIR</text>
+  <text class="small" x="994" y="198">each trace row must be a</text>
+  <text class="small" x="994" y="221">valid Poseidon compression</text>
+  <path class="arrow" d="M966 204 C930 204 920 232 860 234"/>
+
+  <rect class="callout calloutAmber" x="966" y="620" width="258" height="86"/>
+  <text class="label" x="994" y="657">Public constraint</text>
+  <text class="mono" x="994" y="684">final output = D</text>
+
+  <rect class="callout" x="384" y="724" width="512" height="34"/>
+  <text class="small" x="424" y="746">Batched sumcheck: AIR claim + dense cell-chain claim + sparse virtual-link/parity claim</text>
+</svg>

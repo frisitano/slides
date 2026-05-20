@@ -6,3 +6,6 @@ html: true
 options:
   markdown:
     breaks: true
+
+themeSet:
+  - themes/marp-4x5.css

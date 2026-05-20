@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">LeanAIR parity identity as a sparse linear claim</title>
+  <desc id="desc">Source diagram showing how the row low-degree parity identity is enforced as sparse coefficients over committed Poseidon hash inputs.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 12; }
+      .blue { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .green { fill: #dcfce7; stroke: #15803d; stroke-width: 2; rx: 10; }
+      .amber { fill: #fef3c7; stroke: #b45309; stroke-width: 2; rx: 10; }
+      .rose { fill: #ffe4e6; stroke: #be123c; stroke-width: 2; rx: 10; }
+      .slate { fill: #e2e8f0; stroke: #475569; stroke-width: 2; rx: 10; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 16px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .mono { font: 600 15px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334155; }
+      .bigmono { font: 700 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #0f172a; }
+      .arrow { stroke: #1f2937; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .thin { stroke: #64748b; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="720"/>
+  <text class="title" x="52" y="56">Row LDT: barycentric parity identity as one sparse linear claim</text>
+
+  <rect class="panel" x="52" y="95" width="360" height="520"/>
+  <text class="label" x="82" y="135">One row codeword C_i</text>
+  <text class="small" x="82" y="165">Length 2M over the extension field.</text>
+
+  <rect class="blue" x="88" y="210" width="130" height="64"/>
+  <text class="mono" x="112" y="249">C_i[0]</text>
+  <rect class="rose" x="238" y="210" width="130" height="64"/>
+  <text class="mono" x="262" y="249">C_i[1]</text>
+
+  <rect class="blue" x="88" y="300" width="130" height="64"/>
+  <text class="mono" x="112" y="339">C_i[2]</text>
+  <rect class="rose" x="238" y="300" width="130" height="64"/>
+  <text class="mono" x="262" y="339">C_i[3]</text>
+
+  <rect class="blue" x="88" y="390" width="130" height="64"/>
+  <text class="mono" x="112" y="429">C_i[2j]</text>
+  <rect class="rose" x="238" y="390" width="130" height="64"/>
+  <text class="mono" x="262" y="429">C_i[2j+1]</text>
+
+  <text class="small" x="104" y="503">even terms interpolate L(X)</text>
+  <text class="small" x="104" y="531">odd terms interpolate R(X)</text>
+  <text class="bigmono" x="104" y="568">valid row iff L(r) - R(r) = 0</text>
+
+  <rect class="panel" x="470" y="95" width="340" height="520"/>
+  <text class="label" x="500" y="135">Same values feed hashing</text>
+  <text class="small" x="500" y="165">No second copy of the codeword is used.</text>
+
+  <rect class="green" x="520" y="222" width="240" height="96"/>
+  <text class="label" x="548" y="258">Cell hash row</text>
+  <text class="mono" x="548" y="286">input[0..15] = limbs</text>
+
+  <rect class="green" x="520" y="360" width="240" height="96"/>
+  <text class="label" x="548" y="396">Poseidon output</text>
+  <text class="mono" x="548" y="424">q[i,j] digest</text>
+
+  <text class="small" x="500" y="511">Changing a row value changes the</text>
+  <text class="small" x="500" y="535">Poseidon input used by commitments.</text>
+
+  <path class="thin" d="M368 242 C415 242 428 270 516 270"/>
+  <path class="thin" d="M368 332 C425 332 430 270 516 270"/>
+  <path class="arrow" d="M640 318 V356"/>
+
+  <rect class="panel" x="868" y="95" width="360" height="520"/>
+  <text class="label" x="898" y="135">Sparse coefficients</text>
+  <text class="small" x="898" y="165">Verifier derives every selected position.</text>
+
+  <rect class="amber" x="908" y="210" width="280" height="132"/>
+  <text class="label" x="936" y="245">Barycentric weights</text>
+  <text class="mono" x="936" y="278">slice_L[j](r)</text>
+  <text class="mono" x="936" y="306">slice_R[j](r)</text>
+
+  <rect class="rose" x="908" y="374" width="280" height="102"/>
+  <text class="label" x="936" y="409">Row aggregation</text>
+  <text class="mono" x="936" y="442">alpha^i from public root R</text>
+
+  <rect class="slate" x="908" y="508" width="280" height="74"/>
+  <text class="bigmono" x="936" y="552">sum coeff * trace_cell = 0</text>
+
+  <path class="arrow" d="M760 270 H904"/>
+  <path class="arrow" d="M1048 342 V370"/>
+  <path class="arrow" d="M1048 476 V504"/>
+</svg>
