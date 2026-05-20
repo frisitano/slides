@@ -91,7 +91,7 @@
       <tspan x="245" y="130">eips.ethereum.org/EIPS/eip-8025</tspan>
       <tspan x="245" y="162">github.com/ethereum/EIPs/pull/11604</tspan>
       <tspan x="245" y="194">ethereum-magicians.org/t/eip-8025-optional-execution-proofs/25500</tspan>
-      <tspan x="245" y="226">ethereum.github.io/consensus-specs/specs/_features/eip8025/</tspan>
+      <tspan x="245" y="226">github.com/ethereum/consensus-specs/tree/master/specs/_features/eip8025</tspan>
       <tspan x="245" y="258">github.com/ethereum/beacon-APIs/pull/569</tspan>
       <tspan x="245" y="290">github.com/eth-act/lighthouse</tspan>
       <tspan x="245" y="322">github.com/OffchainLabs/prysm/tree/optional-proofs</tspan>
