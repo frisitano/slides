@@ -400,7 +400,7 @@ function prepareEmbeddedDeck() {
   if (!doc.getElementById('mdbook-embedded-deck-style')) {
     const style = doc.createElement('style');
     style.id = 'mdbook-embedded-deck-style';
-    style.textContent = 'body,.bespoke-marp-parent{background:#f8fafc!important;}.bespoke-marp-osc{display:none!important;}';
+    style.textContent = 'body,.bespoke-marp-parent{background:#f8fafc!important;}';
     doc.head.appendChild(style);
   }
 }
