@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" width="1400" height="820" role="img" aria-labelledby="title desc">
+  <title id="title">End-of-slot burst versus pipelined updates</title>
+  <desc id="desc">A timeline comparing one large end-of-slot proof and data burst against four smaller pipelined proof and diff updates.</desc>
+  <rect x="0" y="0" width="1400" height="820" fill="#ffffff"/>
+  <text x="72" y="76" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="700">Burst profile is the issue</text>
+  <text x="72" y="118" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="22">Same slot, different network shape: one late payload versus repeated smaller updates.</text>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="72" y="194" fill="#0f172a" font-size="26" font-weight="700">End-of-slot</text>
+    <text x="72" y="228" fill="#64748b" font-size="18">send proof + all column samples near the deadline</text>
+    <line x1="260" y1="250" x2="1240" y2="250" stroke="#94a3b8" stroke-width="3"/>
+    <g fill="#64748b" font-size="17" text-anchor="middle">
+      <line x1="260" y1="238" x2="260" y2="262" stroke="#94a3b8" stroke-width="3"/>
+      <text x="260" y="292">0s</text>
+      <line x1="505" y1="242" x2="505" y2="258" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="505" y="292">3s</text>
+      <line x1="750" y1="242" x2="750" y2="258" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="750" y="292">6s</text>
+      <line x1="995" y1="242" x2="995" y2="258" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="995" y="292">9s</text>
+      <line x1="1240" y1="238" x2="1240" y2="262" stroke="#94a3b8" stroke-width="3"/>
+      <text x="1240" y="292">12s</text>
+    </g>
+    <rect x="1048" y="158" width="180" height="184" rx="12" fill="#ffe4e6" stroke="#e11d48" stroke-width="3"/>
+    <text x="1138" y="223" fill="#9f1239" font-size="28" font-weight="700" text-anchor="middle">868 kB</text>
+    <text x="1138" y="257" fill="#9f1239" font-size="19" text-anchor="middle">one burst</text>
+    <text x="1138" y="287" fill="#9f1239" font-size="19" text-anchor="middle">at slot end</text>
+
+    <text x="72" y="448" fill="#0f172a" font-size="26" font-weight="700">Pipelined</text>
+    <text x="72" y="482" fill="#64748b" font-size="18">send latest proof + only the new column-sample diff</text>
+    <line x1="260" y1="520" x2="1240" y2="520" stroke="#94a3b8" stroke-width="3"/>
+    <g fill="#64748b" font-size="17" text-anchor="middle">
+      <line x1="260" y1="508" x2="260" y2="532" stroke="#94a3b8" stroke-width="3"/>
+      <text x="260" y="562">0s</text>
+      <line x1="505" y1="508" x2="505" y2="532" stroke="#94a3b8" stroke-width="3"/>
+      <text x="505" y="562">3s</text>
+      <line x1="750" y1="508" x2="750" y2="532" stroke="#94a3b8" stroke-width="3"/>
+      <text x="750" y="562">6s</text>
+      <line x1="995" y1="508" x2="995" y2="532" stroke="#94a3b8" stroke-width="3"/>
+      <text x="995" y="562">9s</text>
+      <line x1="1240" y1="508" x2="1240" y2="532" stroke="#94a3b8" stroke-width="3"/>
+      <text x="1240" y="562">12s</text>
+    </g>
+    <g>
+      <rect x="455" y="428" width="100" height="92" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+      <rect x="700" y="428" width="100" height="92" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+      <rect x="945" y="428" width="100" height="92" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+      <rect x="1190" y="428" width="100" height="92" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+      <g fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="middle">
+        <text x="505" y="475">292 kB</text>
+        <text x="750" y="475">292 kB</text>
+        <text x="995" y="475">292 kB</text>
+        <text x="1240" y="475">292 kB</text>
+      </g>
+      <g fill="#1d4ed8" font-size="15" text-anchor="middle">
+        <text x="505" y="501">proof + diff</text>
+        <text x="750" y="501">proof + diff</text>
+        <text x="995" y="501">proof + diff</text>
+        <text x="1240" y="501">proof + diff</text>
+      </g>
+    </g>
+
+    <rect x="72" y="640" width="1256" height="104" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="104" y="684" fill="#0f172a" font-size="24" font-weight="700">Tradeoff</text>
+    <text x="260" y="684" fill="#334155" font-size="22">pipeline total bytes are higher because proofs repeat, but the largest per-update payload is smaller.</text>
+    <text x="260" y="718" fill="#334155" font-size="22">That is useful when peak bandwidth and late verification load are the bottleneck.</text>
+  </g>
+</svg>

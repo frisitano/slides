@@ -1,0 +1,17 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
+
+# Text Elements
+
+Consensus specs modifications ^tex00000001
+
+# Drawing
+
+```json
+{"type":"excalidraw","version":2,"source":"https://excalidraw.com","elements":[{"id":"rec00000001","type":"rectangle","x":60,"y":40,"width":1480,"height":960,"angle":0,"strokeColor":"#0f172a","backgroundColor":"#ffffff","fillStyle":"solid","strokeWidth":2,"strokeStyle":"solid","roughness":1,"opacity":100,"groupIds":[],"frameId":null,"roundness":{"type":3},"seed":300001,"version":1,"versionNonce":400001,"isDeleted":false,"boundElements":null,"updated":1710000000001,"link":null,"locked":false},{"id":"tex00000002","type":"text","x":84,"y":94,"width":1360,"height":427.5,"angle":0,"strokeColor":"#0f172a","backgroundColor":"transparent","fillStyle":"solid","strokeWidth":2,"strokeStyle":"solid","roughness":1,"opacity":100,"groupIds":[],"frameId":null,"roundness":null,"seed":300002,"version":1,"versionNonce":400002,"isDeleted":false,"boundElements":null,"updated":1710000000002,"link":null,"locked":false,"fontSize":19,"fontFamily":1,"text":"def process_execution_proof(\n    state: BeaconState,\n    signed_proof: SignedExecutionProof,\n    proof_engine: ProofEngine,\n) -> None:\n    proof_message = signed_proof.message\n\n    # Verify prover is an active validator\n    validator = state.validators[signed_proof.validator_index]\n    assert is_active_validator(validator, get_current_epoch(state))\n\n    # Verify execution proof signature\n    domain = get_domain(state, DOMAIN_EXECUTION_PROOF, compute_epoch_at_slot(state.slot))\n    signing_root = compute_signing_root(proof_message, domain)\n    assert bls.Verify(validator.pubkey, signing_root, signed_proof.signature)\n\n    # Verify the execution proof\n    assert proof_engine.verify_execution_proof(proof_message)","rawText":"def process_execution_proof(\n    state: BeaconState,\n    signed_proof: SignedExecutionProof,\n    proof_engine: ProofEngine,\n) -> None:\n    proof_message = signed_proof.message\n\n    # Verify prover is an active validator\n    validator = state.validators[signed_proof.validator_index]\n    assert is_active_validator(validator, get_current_epoch(state))\n\n    # Verify execution proof signature\n    domain = get_domain(state, DOMAIN_EXECUTION_PROOF, compute_epoch_at_slot(state.slot))\n    signing_root = compute_signing_root(proof_message, domain)\n    assert bls.Verify(validator.pubkey, signing_root, signed_proof.signature)\n\n    # Verify the execution proof\n    assert proof_engine.verify_execution_proof(proof_message)","originalText":"def process_execution_proof(\n    state: BeaconState,\n    signed_proof: SignedExecutionProof,\n    proof_engine: ProofEngine,\n) -> None:\n    proof_message = signed_proof.message\n\n    # Verify prover is an active validator\n    validator = state.validators[signed_proof.validator_index]\n    assert is_active_validator(validator, get_current_epoch(state))\n\n    # Verify execution proof signature\n    domain = get_domain(state, DOMAIN_EXECUTION_PROOF, compute_epoch_at_slot(state.slot))\n    signing_root = compute_signing_root(proof_message, domain)\n    assert bls.Verify(validator.pubkey, signing_root, signed_proof.signature)\n\n    # Verify the execution proof\n    assert proof_engine.verify_execution_proof(proof_message)","textAlign":"left","verticalAlign":"top","baseline":369,"lineHeight":1.25}],"appState":{"gridSize":null,"viewBackgroundColor":"#f8fafc"},"files":{}}
+```

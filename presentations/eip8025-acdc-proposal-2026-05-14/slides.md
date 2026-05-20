@@ -4,6 +4,8 @@ theme: gaia
 class: lead
 paginate: true
 backgroundColor: #fff
+title: EIP-8025 ACDC Proposal
+category: EIP-8025
 ---
 
 <!-- Slide 1: Title -->
@@ -35,7 +37,7 @@ li { font-size: 0.75em; }
 ### Motivation
 
 - **Benefits**
-  - Sublinear, stateless validation — node hardware requirements decoupled from gas limit & state size
+  - Check payload validity by verifying execution proofs — proof verification is constant time with respect to gas limit & state size
   - Make block validation accessible — preserving decentralisation even as gas limit and state grow
 - **Why "optional"**
   - Mitigates the risk of introducing novel cryptographic technology into the protocol
@@ -127,7 +129,7 @@ li { font-size: 0.7em; }
 ### Execution Layer
 
 - **Guest program**:
-  - Which program execution proofs attest to.
+  - The program a prover runs to generate an execution proof.
   - High-level parts: [input validation and transformation] + [STF] + [public inputs commitment].
 - **`StatelessInput`**
   - Input to the guest program.

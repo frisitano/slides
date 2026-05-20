@@ -3,6 +3,8 @@ marp: true
 theme: default
 paginate: true
 backgroundColor: #fff
+title: Optional Proofs Progress Update — March 11, 2026
+category: EIP-8025
 ---
 
 <!-- Slide 1: Title -->

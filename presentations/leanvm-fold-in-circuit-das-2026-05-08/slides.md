@@ -4,7 +4,7 @@ theme: default
 paginate: true
 size: 16:9
 header: 'leanDA — PQ proofs of RS codes with leanVM'
-footer: 'Francesco Risitano · 2026'
+footer: 'Tau Lepton · 2026'
 style: |
   section {
     font-family: 'Inter', system-ui, sans-serif;
@@ -88,6 +88,8 @@ style: |
   }
   .small { font-size: 0.72em; }
   .center { text-align: center; }
+title: Post Quantum Proofs of Reed-Solomon Codes with leanVM
+category: Research
 ---
 
 <!-- _class: lead -->
@@ -96,7 +98,7 @@ style: |
 
 ## Post Quantum Proofs of RS codes with leanVM
 
-**Francesco Risitano**
+**Tau Lepton**
 
 ---
 
@@ -288,7 +290,7 @@ $$
 
 <div class="step">
 
-**2. Chain only systematic row-cell digests into one digest per row.** The row digest ignores parity cells.
+**2. Chain only systematic cell digests into one digest per row.** The row digest ignores parity cells.
 
 $$
 \mathrm{row}_i=H_{\mathrm{chain}}(q_{i,0},\ldots,q_{i,N_{\mathrm{sys}}-1})

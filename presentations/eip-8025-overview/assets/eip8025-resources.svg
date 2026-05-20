@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="excalidraw-svg" viewBox="0 0 1160 1260" width="1160" height="1260" role="img">
+  <rect width="1160" height="1260" fill="#ffffff"/>
+
+  <rect x="10" y="10" width="1140" height="1240" rx="18" fill="#ffffff" stroke="#111827" stroke-width="2.4"/>
+
+  <g stroke="#111827" stroke-width="2.2">
+    <path d="M36 82H1124"/>
+    <path d="M36 338H1124"/>
+    <path d="M36 419H1124"/>
+    <path d="M36 771H1124"/>
+    <path d="M36 855H1124"/>
+    <path d="M36 1207H1124"/>
+  </g>
+
+  <g stroke="#d1d5db" stroke-width="1.45">
+    <path d="M36 114H1124"/>
+    <path d="M36 146H1124"/>
+    <path d="M36 178H1124"/>
+    <path d="M36 210H1124"/>
+    <path d="M36 242H1124"/>
+    <path d="M36 274H1124"/>
+    <path d="M36 306H1124"/>
+
+    <path d="M36 451H1124"/>
+    <path d="M36 483H1124"/>
+    <path d="M36 515H1124"/>
+    <path d="M36 547H1124"/>
+    <path d="M36 579H1124"/>
+    <path d="M36 611H1124"/>
+    <path d="M36 643H1124"/>
+    <path d="M36 675H1124"/>
+    <path d="M36 707H1124"/>
+    <path d="M36 739H1124"/>
+
+    <path d="M36 887H1124"/>
+    <path d="M36 919H1124"/>
+    <path d="M36 951H1124"/>
+    <path d="M36 983H1124"/>
+    <path d="M36 1015H1124"/>
+    <path d="M36 1047H1124"/>
+    <path d="M36 1079H1124"/>
+    <path d="M36 1111H1124"/>
+    <path d="M36 1143H1124"/>
+    <path d="M36 1175H1124"/>
+  </g>
+
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" fill="#111827">
+    <text font-size="31" font-weight="930">
+      <tspan x="36" y="57">CONSENSUS LAYER</tspan>
+      <tspan x="36" y="394">EXECUTION LAYER</tspan>
+      <tspan x="36" y="830">INFRA / COMMUNITY</tspan>
+    </text>
+
+    <text font-size="17.2" font-weight="850" dominant-baseline="middle">
+      <tspan x="36" y="98">EIP-8025 deck</tspan>
+      <tspan x="36" y="130">EIP</tspan>
+      <tspan x="36" y="162">EIP PR</tspan>
+      <tspan x="36" y="194">Discussion</tspan>
+      <tspan x="36" y="226">Consensus specs</tspan>
+      <tspan x="36" y="258">Beacon API PR</tspan>
+      <tspan x="36" y="290">Lighthouse fork</tspan>
+      <tspan x="36" y="322">Prysm fork</tspan>
+
+      <tspan x="36" y="435">Execution specs</tspan>
+      <tspan x="36" y="467">Stateless API</tspan>
+      <tspan x="36" y="499">Guest program</tspan>
+      <tspan x="36" y="531">Host assembly</tspan>
+      <tspan x="36" y="563">Execution witness</tspan>
+      <tspan x="36" y="595">SSZ schema</tspan>
+      <tspan x="36" y="627">Conformance tests</tspan>
+      <tspan x="36" y="659">Execution API PR</tspan>
+      <tspan x="36" y="691">zkboost</tspan>
+      <tspan x="36" y="723">Ere</tspan>
+      <tspan x="36" y="755">Ere guests</tspan>
+
+      <tspan x="36" y="871">zkEVM hub</tspan>
+      <tspan x="36" y="903">eth-act benchmarks</tspan>
+      <tspan x="36" y="935">L1 zkEVM breakouts</tspan>
+      <tspan x="36" y="967">Benchmark profiles</tspan>
+      <tspan x="36" y="999">Ethproofs</tspan>
+      <tspan x="36" y="1031">Ethproofs GitHub</tspan>
+      <tspan x="36" y="1063">zkVM docs</tspan>
+      <tspan x="36" y="1095">Ethproofs API</tspan>
+      <tspan x="36" y="1127">Ethproofs blog</tspan>
+      <tspan x="36" y="1159">Kurtosis package</tspan>
+      <tspan x="36" y="1191">Dora explorer</tspan>
+    </text>
+
+    <text font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="17.2" font-weight="720" fill="#374151" dominant-baseline="middle">
+      <tspan x="245" y="98">frisitano.github.io/slides/presentations/eip8025-acdc-proposal-2026-05-14/</tspan>
+      <tspan x="245" y="130">eips.ethereum.org/EIPS/eip-8025</tspan>
+      <tspan x="245" y="162">github.com/ethereum/EIPs/pull/11604</tspan>
+      <tspan x="245" y="194">ethereum-magicians.org/t/eip-8025-optional-execution-proofs/25500</tspan>
+      <tspan x="245" y="226">ethereum.github.io/consensus-specs/specs/_features/eip8025/</tspan>
+      <tspan x="245" y="258">github.com/ethereum/beacon-APIs/pull/569</tspan>
+      <tspan x="245" y="290">github.com/eth-act/lighthouse</tspan>
+      <tspan x="245" y="322">github.com/OffchainLabs/prysm/tree/optional-proofs</tspan>
+
+      <tspan x="245" y="435">github.com/ethereum/execution-specs/tree/master/src/ethereum/forks/amsterdam</tspan>
+      <tspan x="245" y="467">github.com/ethereum/execution-specs/blob/.../amsterdam/stateless.py</tspan>
+      <tspan x="245" y="499">github.com/ethereum/execution-specs/blob/.../amsterdam/stateless_guest.py</tspan>
+      <tspan x="245" y="531">github.com/ethereum/execution-specs/blob/.../amsterdam/stateless_host.py</tspan>
+      <tspan x="245" y="563">github.com/ethereum/execution-specs/blob/.../amsterdam/stateless_host_exec_witness.py</tspan>
+      <tspan x="245" y="595">github.com/ethereum/execution-specs/blob/.../amsterdam/stateless_ssz.py</tspan>
+      <tspan x="245" y="627">github.com/ethereum/execution-specs/tree/.../eip8025_optional_proofs</tspan>
+      <tspan x="245" y="659">github.com/ethereum/execution-apis/pull/735</tspan>
+      <tspan x="245" y="691">github.com/eth-act/zkboost</tspan>
+      <tspan x="245" y="723">github.com/eth-act/ere</tspan>
+      <tspan x="245" y="755">github.com/eth-act/ere-guests</tspan>
+
+      <tspan x="245" y="871">zkevm.ethereum.foundation/</tspan>
+      <tspan x="245" y="903">eth-act.github.io/zkevm-benchmark-runs/</tspan>
+      <tspan x="245" y="935">github.com/ethereum/pm/issues?q=is%3Aissue+L1-zkEVM+breakout</tspan>
+      <tspan x="245" y="967">eth-act.github.io/zkevm-benchmark-runs/profiles/</tspan>
+      <tspan x="245" y="999">ethproofs.org/</tspan>
+      <tspan x="245" y="1031">github.com/ethproofs</tspan>
+      <tspan x="245" y="1063">ethproofs.org/docs/zkvms</tspan>
+      <tspan x="245" y="1095">ethproofs.org/api</tspan>
+      <tspan x="245" y="1127">ethproofs.ghost.io/</tspan>
+      <tspan x="245" y="1159">github.com/ethpandaops/ethereum-package</tspan>
+      <tspan x="245" y="1191">github.com/ethpandaops/dora</tspan>
+    </text>
+  </g>
+</svg>
