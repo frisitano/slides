@@ -32,31 +32,37 @@ declare -a writeup_titles=(
     "EIP-8025 Lighthouse architecture for maintainers"
     "EIP-8025 validator proof re-signing"
     "EIP-8025 network announcement and proof gossip"
+    "Weak-Subjectivity Checkpoint Execution Proof Sync"
 )
 declare -a writeup_nav_titles=(
     "Lighthouse Architecture"
     "Re-signing note"
     "Proof gossip"
+    "Checkpoint execution proof sync"
 )
 declare -a writeup_urls=(
     "https://hackmd.io/F4RtMrHgSm2Flw8iUbq2xA?view"
     "https://hackmd.io/@frisitano/HkCzVt-a-x"
     "https://hackmd.io/@frisitano/H1XJS3XTZx"
+    ""
 )
 declare -a writeup_slugs=(
     "eip8025-lighthouse-architecture"
     "eip8025-validator-proof-resigning"
     "eip8025-network-announcement-proof-gossip"
+    "weak-subjectivity-checkpoint-proof-sync"
 )
 declare -a writeup_sources=(
     "writeups/eip8025-lighthouse-architecture.md"
     "writeups/eip8025-validator-proof-resigning.md"
     "writeups/eip8025-network-announcement-proof-gossip.md"
+    "writeups/weak-subjectivity-checkpoint-proof-sync.md"
 )
 declare -a writeup_descriptions=(
     "Maintainer-facing architecture writeup for the Lighthouse EIP-8025 implementation."
     "Design note explaining why validator proof re-signing was deprecated."
     "Network writeup covering announcement, fetch, and proof-gossip tradeoffs."
+    "Design note for recursive execution-proof sync from a weak-subjectivity checkpoint using BeaconChainProof and execution-proof bindings."
 )
 
 declare -a research_writeup_titles=(
@@ -590,12 +596,16 @@ generate_writeup_pages() {
         local source_file="${writeup_sources[$i]}"
 
         if [[ -f "${source_file}" ]]; then
-            cat > "${page}" <<EOF
+            if [[ -n "${writeup_urls[$i]}" ]]; then
+                cat > "${page}" <<EOF
 <div class="writeup-origin">
   <a href="${writeup_urls[$i]}">Open original HackMD</a>
 </div>
 
 EOF
+            else
+                : > "${page}"
+            fi
             cat "${source_file}" >> "${page}"
         else
             cat > "${page}" <<EOF
@@ -603,8 +613,12 @@ EOF
 
 ${writeup_descriptions[$i]}
 
+EOF
+            if [[ -n "${writeup_urls[$i]}" ]]; then
+                cat >> "${page}" <<EOF
 [Open HackMD](${writeup_urls[$i]})
 EOF
+            fi
         fi
     done
 
@@ -764,6 +778,13 @@ generate_homepage() {
       <div class="tl-body">
         <a href="writeups/eip8025-network-announcement-proof-gossip.html">Network announcement and proof gossip</a>
         <p>Announcement, fetch, and gossip tradeoffs for execution proofs.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-meta">Writeup<br>Sync</div>
+      <div class="tl-body">
+        <a href="writeups/weak-subjectivity-checkpoint-proof-sync.html">Weak-subjectivity checkpoint execution proof sync</a>
+        <p>Recursive execution-proof sync design using BeaconChainProof and execution-proof bindings.</p>
       </div>
     </div>
     <div class="tl-item">
