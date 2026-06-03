@@ -275,6 +275,16 @@ def is_checkpoint_in_beacon_chain_proof_range(
     raise NotImplementedError
 ```
 
+### MMR suitability
+
+A Merkle Mountain Range may be a good fit for this part of the scheme because the beacon chain appends one new block root at a time. `extend_chain` can append `block_root` to an accumulator, and `update_checkpoint` can use an inclusion proof to show that `(checkpoint_slot, checkpoint_root)` is inside the accumulated range. Efficient ancestry lookups is a useful feature that users can benefit from outside of this specific use case.
+
+This gives efficient dynamic ancestry checks:
+
+- appending a new beacon root does not require rebuilding the accumulator;
+- proving that a checkpoint root appears in the proven range is logarithmic in the range length;
+- the recursive parent-root checks prove chain order; the MMR gives efficient lookup.
+
 ---
 
 ## 9. Fork And Config Requirements
