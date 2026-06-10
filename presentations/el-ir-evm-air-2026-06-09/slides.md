@@ -5,7 +5,7 @@ class: lead
 paginate: true
 backgroundColor: #fff
 title: Proving the EL State Machine — EL-IR
-category: Research
+category: EIP-8025
 ---
 
 # Proving the EL State Machine
