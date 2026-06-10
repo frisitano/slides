@@ -162,6 +162,7 @@ get_deck_nav_title() {
         optional-proofs-2026-03-11) echo "Mar 11 Progress" ;;
         optional-proofs-2026-04-08) echo "Apr 8 Progress" ;;
         optional-proofs-2026-05-13) echo "May 13 Progress" ;;
+        optional-proofs-2026-06-10) echo "Jun 10 Progress" ;;
         leanvm-fold-in-circuit-das-2026-05-08) echo "PQ RS Proofs with LeanVM" ;;
         *) echo "${deck_title}" ;;
     esac
@@ -176,6 +177,7 @@ deck_priority() {
         optional-proofs-2026-03-11) echo "030" ;;
         optional-proofs-2026-04-08) echo "040" ;;
         optional-proofs-2026-05-13) echo "050" ;;
+        optional-proofs-2026-06-10) echo "060" ;;
         *) echo "900" ;;
     esac
 }
@@ -820,6 +822,13 @@ generate_homepage() {
       <div class="tl-body">
         <a href="presentations/optional-proofs-2026-05-13/index.html">May progress update</a>
         <p>Latest EIP-8025 progress, implementation work, and devnet status.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-meta">Progress<br>Jun 10</div>
+      <div class="tl-body">
+        <a href="presentations/optional-proofs-2026-06-10/index.html">June progress update</a>
+        <p>Weak-subjectivity proof sync, BiB PoC, Lighthouse upstreaming, and EL-IR specification.</p>
       </div>
     </div>
   </div>
