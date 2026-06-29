@@ -6,6 +6,8 @@ paginate: true
 backgroundColor: #fff
 title: Optional Proofs Progress Update — May 13, 2026
 category: EIP-8025
+nav_title: "May 13 Progress"
+order: 50
 kind: Progress
 description: "Latest EIP-8025 progress, implementation work, and devnet status."
 ---

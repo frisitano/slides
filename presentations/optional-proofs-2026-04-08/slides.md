@@ -6,6 +6,8 @@ paginate: true
 backgroundColor: #fff
 title: Optional Proofs Progress Update — April 8, 2026
 category: EIP-8025
+nav_title: "Apr 8 Progress"
+order: 40
 kind: Progress
 description: "Protocol updates, implementation status, and open questions."
 ---

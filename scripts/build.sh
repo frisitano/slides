@@ -28,6 +28,7 @@ declare -a deck_categories=()
 declare -a deck_kinds=()
 declare -a deck_dates=()
 declare -a deck_descriptions=()
+declare -a deck_orders=()
 declare -a category_order=("EIP-8025" "Post Quantum Data Availability" "Formal Verification" "Other")
 
 declare -a writeup_titles=(
@@ -169,34 +170,14 @@ extract_deck_date() {
     echo "${date}"
 }
 
+# Sidebar/card nav label: `nav_title:` frontmatter, else the deck title.
 get_deck_nav_title() {
-    local deck_name="$1"
+    local slides_file="$1"
     local deck_title="$2"
-    case "${deck_name}" in
-        eip8025-acdc-proposal-2026-05-14) echo "ACDC Proposal" ;;
-        eip-8025-overview) echo "Overview Deck" ;;
-        optional-proofs-2026-02-11) echo "Feb 11 Progress" ;;
-        optional-proofs-2026-03-11) echo "Mar 11 Progress" ;;
-        optional-proofs-2026-04-08) echo "Apr 8 Progress" ;;
-        optional-proofs-2026-05-13) echo "May 13 Progress" ;;
-        optional-proofs-2026-06-10) echo "Jun 10 Progress" ;;
-        leanvm-fold-in-circuit-das-2026-05-08) echo "PQ RS Proofs with LeanVM" ;;
-        *) echo "${deck_title}" ;;
-    esac
-}
-
-deck_priority() {
-    local deck_name="$1"
-    case "${deck_name}" in
-        eip-8025-overview) echo "000" ;;
-        eip8025-acdc-proposal-2026-05-14) echo "010" ;;
-        optional-proofs-2026-02-11) echo "020" ;;
-        optional-proofs-2026-03-11) echo "030" ;;
-        optional-proofs-2026-04-08) echo "040" ;;
-        optional-proofs-2026-05-13) echo "050" ;;
-        optional-proofs-2026-06-10) echo "060" ;;
-        *) echo "900" ;;
-    esac
+    local nav_title
+    nav_title=$(extract_frontmatter_value "${slides_file}" "nav_title")
+    [[ -z "${nav_title}" ]] && nav_title="${deck_title}"
+    echo "${nav_title}"
 }
 
 sort_decks_for_index() {
@@ -210,8 +191,8 @@ sort_decks_for_index() {
         sorted_indices+=("${sorted_index}")
     done < <(
         for i in "${!deck_names[@]}"; do
-            printf '%s\t%s\t%s\n' "$(deck_priority "${deck_names[$i]}")" "${deck_names[$i]}" "$i"
-        done | sort -k1,1 -k2,2 | cut -f3
+            printf '%s\t%s\t%s\n' "${deck_orders[$i]}" "${deck_names[$i]}" "$i"
+        done | sort -k1,1n -k2,2 | cut -f3
     )
 
     local sorted_names=()
@@ -221,6 +202,7 @@ sort_decks_for_index() {
     local sorted_kinds=()
     local sorted_dates=()
     local sorted_descriptions=()
+    local sorted_orders=()
     local i
     for i in "${sorted_indices[@]}"; do
         sorted_names+=("${deck_names[$i]}")
@@ -230,6 +212,7 @@ sort_decks_for_index() {
         sorted_kinds+=("${deck_kinds[$i]}")
         sorted_dates+=("${deck_dates[$i]}")
         sorted_descriptions+=("${deck_descriptions[$i]}")
+        sorted_orders+=("${deck_orders[$i]}")
     done
 
     deck_names=("${sorted_names[@]}")
@@ -239,6 +222,7 @@ sort_decks_for_index() {
     deck_kinds=("${sorted_kinds[@]}")
     deck_dates=("${sorted_dates[@]}")
     deck_descriptions=("${sorted_descriptions[@]}")
+    deck_orders=("${sorted_orders[@]}")
 }
 
 # Clean and recreate output directory
@@ -511,7 +495,7 @@ build_deck() {
     local deck_category
     deck_category=$(extract_category "${deck_dir}/slides.md")
     local deck_nav_title
-    deck_nav_title=$(get_deck_nav_title "${deck_name}" "${deck_title}")
+    deck_nav_title=$(get_deck_nav_title "${deck_dir}/slides.md" "${deck_title}")
     local deck_size
     deck_size=$(extract_frontmatter_value "${deck_dir}/slides.md" "size")
     # Home-page card metadata (auto-discovered, like the sidebar).
@@ -522,6 +506,9 @@ build_deck() {
     deck_date=$(extract_deck_date "${deck_dir}/slides.md" "${deck_name}")
     local deck_description
     deck_description=$(extract_frontmatter_value "${deck_dir}/slides.md" "description")
+    local deck_order
+    deck_order=$(extract_frontmatter_value "${deck_dir}/slides.md" "order")
+    [[ -z "${deck_order}" ]] && deck_order="900"
 
     # Create output directory for this deck
     local deck_output_dir="${DECKS_OUTPUT_DIR}/${deck_name}"
@@ -553,6 +540,7 @@ build_deck() {
     deck_kinds+=("${deck_kind}")
     deck_dates+=("${deck_date}")
     deck_descriptions+=("${deck_description}")
+    deck_orders+=("${deck_order}")
 
     log_success "Built ${deck_name}: ${deck_title}"
 }
