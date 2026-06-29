@@ -831,7 +831,7 @@ generate_homepage() {
 </section>
 
 <section class="tl-section">
-  <h2>Post Qauntum Data Availability</h2>
+  <h2>Post Quantum Data Availability</h2>
   <div class="tl-list">
     <div class="tl-item">
       <div class="tl-meta">Deck<br>May 8, 2026</div>
@@ -852,6 +852,19 @@ generate_homepage() {
       <div class="tl-body">
         <a href="writeups/pipelined-blob-proof-dissemination.html">Pipelined PQ blob dissemination</a>
         <p>Bandwidth analysis of a concrete 100 kB proof example comparing pipelined column-sample diffs with an end-of-slot burst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tl-section">
+  <h2>Formal Verification</h2>
+  <div class="tl-list">
+    <div class="tl-item">
+      <div class="tl-meta">Deck<br>Jun 2026</div>
+      <div class="tl-body">
+        <a href="presentations/evm-sail-overview/index.html">evm-sail — A formal specification of the EVM</a>
+        <p>Formal, executable EVM specification in Sail — one source of truth, with a kernel-interface design and extraction to Lean, Islaris, C, RISC-V and Rocq for proofs, conformance and a zkEVM guest.</p>
       </div>
     </div>
   </div>
