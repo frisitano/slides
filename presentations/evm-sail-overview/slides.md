@@ -5,7 +5,7 @@ paginate: false
 size: 16:9
 math: katex
 title: evm-sail — A formal specification of the EVM
-category: Research
+category: Formal Verification
 style: |
   section {
     font-family: 'Inter', system-ui, sans-serif;

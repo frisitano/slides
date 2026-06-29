@@ -25,8 +25,7 @@ declare -a deck_names=()
 declare -a deck_titles=()
 declare -a deck_nav_titles=()
 declare -a deck_categories=()
-declare -a category_order=("EIP-8025" "Research" "Other")
-readonly RESEARCH_SECTION_TITLE="Post Qauntum Data Availability"
+declare -a category_order=("EIP-8025" "Post Quantum Data Availability" "Formal Verification" "Other")
 
 declare -a writeup_titles=(
     "EIP-8025 Lighthouse architecture for maintainers"
@@ -536,9 +535,6 @@ EOF
 
     for category in "${category_order[@]}"; do
         local category_heading="${category}"
-        if [[ "${category}" == "Research" ]]; then
-            category_heading="${RESEARCH_SECTION_TITLE}"
-        fi
         local wrote_heading=0
         for i in "${!deck_names[@]}"; do
             if [[ "${deck_categories[$i]}" != "${category}" ]]; then
@@ -565,7 +561,7 @@ EOF
             done
         fi
 
-        if [[ "${category}" == "Research" && ${#research_writeup_titles[@]} -gt 0 ]]; then
+        if [[ "${category}" == "Post Quantum Data Availability" && ${#research_writeup_titles[@]} -gt 0 ]]; then
             if [[ ${wrote_heading} -eq 0 ]]; then
                 echo "# ${category_heading}" >> "book/src/SUMMARY.md"
                 echo "" >> "book/src/SUMMARY.md"

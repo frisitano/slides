@@ -89,7 +89,7 @@ style: |
   .small { font-size: 0.72em; }
   .center { text-align: center; }
 title: Post Quantum Proofs of Reed-Solomon Codes with leanVM
-category: Research
+category: Post Quantum Data Availability
 ---
 
 <!-- _class: lead -->

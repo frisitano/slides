@@ -23,3 +23,6 @@ yarn.lock
 # Temporary files
 *.tmp
 *.temp
+
+# Marp HTML exports (VS Code extension auto-export)
+presentations/*/slides.html
