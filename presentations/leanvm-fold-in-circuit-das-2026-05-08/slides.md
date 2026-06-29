@@ -90,6 +90,7 @@ style: |
   .center { text-align: center; }
 title: Post Quantum Proofs of Reed-Solomon Codes with leanVM
 category: Post Quantum Data Availability
+description: "Proof systems for Reed-Solomon codes and data-availability sampling."
 ---
 
 <!-- _class: lead -->

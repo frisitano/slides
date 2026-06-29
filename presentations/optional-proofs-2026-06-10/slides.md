@@ -6,6 +6,8 @@ paginate: true
 backgroundColor: #fff
 title: Optional Proofs Progress Update — June 10, 2026
 category: EIP-8025
+kind: Progress
+description: "Weak-subjectivity proof sync, BiB PoC, Lighthouse upstreaming, and EL-IR specification."
 ---
 
 <!-- Slide 1: Title -->

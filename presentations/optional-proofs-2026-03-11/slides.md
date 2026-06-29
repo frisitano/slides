@@ -5,6 +5,8 @@ paginate: true
 backgroundColor: #fff
 title: Optional Proofs Progress Update — March 11, 2026
 category: EIP-8025
+kind: Progress
+description: "Optional proof design and implementation progress."
 ---
 
 <!-- Slide 1: Title -->

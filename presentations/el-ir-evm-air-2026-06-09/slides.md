@@ -6,6 +6,7 @@ paginate: true
 backgroundColor: #fff
 title: Proving the EL State Machine — EL-IR
 category: EIP-8025
+description: "Specifying the EL state machine as an EL-IR intermediate representation for execution proving."
 ---
 
 # Proving the EL State Machine

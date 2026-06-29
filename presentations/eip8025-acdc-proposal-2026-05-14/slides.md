@@ -6,6 +6,7 @@ paginate: true
 backgroundColor: #fff
 title: EIP-8025 ACDC Proposal
 category: EIP-8025
+description: "Proposal for optional execution proofs in Hegota."
 ---
 
 <!-- Slide 1: Title -->

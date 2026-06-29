@@ -25,6 +25,9 @@ declare -a deck_names=()
 declare -a deck_titles=()
 declare -a deck_nav_titles=()
 declare -a deck_categories=()
+declare -a deck_kinds=()
+declare -a deck_dates=()
+declare -a deck_descriptions=()
 declare -a category_order=("EIP-8025" "Post Quantum Data Availability" "Formal Verification" "Other")
 
 declare -a writeup_titles=(
@@ -151,6 +154,21 @@ extract_category() {
     echo "${category}"
 }
 
+# The home-page card "meta" line under the kind label. Prefer a `date:` in
+# frontmatter; otherwise derive it from a trailing -YYYY-MM-DD in the deck name.
+extract_deck_date() {
+    local slides_file="$1"
+    local deck_name="$2"
+    local date
+    date=$(extract_frontmatter_value "${slides_file}" "date")
+    if [[ -z "${date}" ]] && [[ "${deck_name}" =~ ([0-9]{4})-([0-9]{2})-([0-9]{2})$ ]]; then
+        local y="${BASH_REMATCH[1]}" m="${BASH_REMATCH[2]}" d="${BASH_REMATCH[3]}"
+        local months=(x Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+        date="${months[10#${m}]} $((10#${d})), ${y}"
+    fi
+    echo "${date}"
+}
+
 get_deck_nav_title() {
     local deck_name="$1"
     local deck_title="$2"
@@ -200,18 +218,27 @@ sort_decks_for_index() {
     local sorted_titles=()
     local sorted_nav_titles=()
     local sorted_categories=()
+    local sorted_kinds=()
+    local sorted_dates=()
+    local sorted_descriptions=()
     local i
     for i in "${sorted_indices[@]}"; do
         sorted_names+=("${deck_names[$i]}")
         sorted_titles+=("${deck_titles[$i]}")
         sorted_nav_titles+=("${deck_nav_titles[$i]}")
         sorted_categories+=("${deck_categories[$i]}")
+        sorted_kinds+=("${deck_kinds[$i]}")
+        sorted_dates+=("${deck_dates[$i]}")
+        sorted_descriptions+=("${deck_descriptions[$i]}")
     done
 
     deck_names=("${sorted_names[@]}")
     deck_titles=("${sorted_titles[@]}")
     deck_nav_titles=("${sorted_nav_titles[@]}")
     deck_categories=("${sorted_categories[@]}")
+    deck_kinds=("${sorted_kinds[@]}")
+    deck_dates=("${sorted_dates[@]}")
+    deck_descriptions=("${sorted_descriptions[@]}")
 }
 
 # Clean and recreate output directory
@@ -487,6 +514,14 @@ build_deck() {
     deck_nav_title=$(get_deck_nav_title "${deck_name}" "${deck_title}")
     local deck_size
     deck_size=$(extract_frontmatter_value "${deck_dir}/slides.md" "size")
+    # Home-page card metadata (auto-discovered, like the sidebar).
+    local deck_kind
+    deck_kind=$(extract_frontmatter_value "${deck_dir}/slides.md" "kind")
+    [[ -z "${deck_kind}" ]] && deck_kind="Deck"
+    local deck_date
+    deck_date=$(extract_deck_date "${deck_dir}/slides.md" "${deck_name}")
+    local deck_description
+    deck_description=$(extract_frontmatter_value "${deck_dir}/slides.md" "description")
 
     # Create output directory for this deck
     local deck_output_dir="${DECKS_OUTPUT_DIR}/${deck_name}"
@@ -515,6 +550,9 @@ build_deck() {
     deck_titles+=("${deck_title}")
     deck_nav_titles+=("${deck_nav_title}")
     deck_categories+=("${deck_category}")
+    deck_kinds+=("${deck_kind}")
+    deck_dates+=("${deck_date}")
+    deck_descriptions+=("${deck_description}")
 
     log_success "Built ${deck_name}: ${deck_title}"
 }
@@ -643,6 +681,26 @@ generate_writeups_summary() {
     return 0
 }
 # Update README.md with grouped presentation index
+# --- home-page section/card emitters (append to book/src/README.md) ---
+homepage_section_open() {  # $1 = heading
+    printf '\n<section class="tl-section">\n  <h2>%s</h2>\n  <div class="tl-list">\n' "$1" >> "book/src/README.md"
+}
+homepage_section_close() {
+    printf '  </div>\n</section>\n' >> "book/src/README.md"
+}
+homepage_card() {  # $1=href $2=kind $3=date $4=title $5=description
+    local meta="$2"
+    [[ -n "$3" ]] && meta="$2<br>$3"
+    {
+        printf '    <div class="tl-item">\n'
+        printf '      <div class="tl-meta">%s</div>\n' "${meta}"
+        printf '      <div class="tl-body">\n'
+        printf '        <a href="%s">%s</a>\n' "$1" "$4"
+        [[ -n "$5" ]] && printf '        <p>%s</p>\n' "$5"
+        printf '      </div>\n    </div>\n'
+    } >> "book/src/README.md"
+}
+
 generate_homepage() {
     log_info "Generating Tau Lepton landing page..."
 
@@ -746,132 +804,37 @@ generate_homepage() {
     <a href="https://x.com/TauLepton_">X / Twitter</a>
   </nav>
 </section>
-
-<section class="tl-section">
-  <h2>EIP-8025</h2>
-  <div class="tl-list">
-    <div class="tl-item">
-      <div class="tl-meta">Deck<br>EIP-8025</div>
-      <div class="tl-body">
-        <a href="presentations/eip-8025-overview/index.html">Overview Deck</a>
-        <p>Visual resource deck covering the execution proof flow.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Deck<br>May 14, 2026</div>
-      <div class="tl-body">
-        <a href="presentations/eip8025-acdc-proposal-2026-05-14/index.html">ACDC proposal</a>
-        <p>Proposal for optional execution proofs in Hegota.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>CL</div>
-      <div class="tl-body">
-        <a href="writeups/eip8025-lighthouse-architecture.html">Lighthouse Architecture</a>
-        <p>Maintainer-facing architecture notes for upstreaming EIP-8025 support.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>Network</div>
-      <div class="tl-body">
-        <a href="writeups/eip8025-network-announcement-proof-gossip.html">Network announcement and proof gossip</a>
-        <p>Announcement, fetch, and gossip tradeoffs for execution proofs.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>Sync</div>
-      <div class="tl-body">
-        <a href="writeups/weak-subjectivity-checkpoint-proof-sync.html">Weak-subjectivity checkpoint execution proof sync</a>
-        <p>Recursive execution-proof sync design using BeaconChainProof and execution-proof bindings.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>Design</div>
-      <div class="tl-body">
-        <a href="writeups/eip8025-validator-proof-resigning.html">Validator proof re-signing</a>
-        <p>Design note explaining why validator proof re-signing was deprecated.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Progress<br>Feb 11</div>
-      <div class="tl-body">
-        <a href="presentations/optional-proofs-2026-02-11/index.html">February progress update</a>
-        <p>Consensus layer integration, proof engine, and proof gossip protocol.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Progress<br>Mar 11</div>
-      <div class="tl-body">
-        <a href="presentations/optional-proofs-2026-03-11/index.html">March progress update</a>
-        <p>Optional proof design and implementation progress.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Progress<br>Apr 8</div>
-      <div class="tl-body">
-        <a href="presentations/optional-proofs-2026-04-08/index.html">April progress update</a>
-        <p>Protocol updates, implementation status, and open questions.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Progress<br>May 13</div>
-      <div class="tl-body">
-        <a href="presentations/optional-proofs-2026-05-13/index.html">May progress update</a>
-        <p>Latest EIP-8025 progress, implementation work, and devnet status.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Progress<br>Jun 10</div>
-      <div class="tl-body">
-        <a href="presentations/optional-proofs-2026-06-10/index.html">June progress update</a>
-        <p>Weak-subjectivity proof sync, BiB PoC, Lighthouse upstreaming, and EL-IR specification.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tl-section">
-  <h2>Post Quantum Data Availability</h2>
-  <div class="tl-list">
-    <div class="tl-item">
-      <div class="tl-meta">Deck<br>May 8, 2026</div>
-      <div class="tl-body">
-        <a href="presentations/leanvm-fold-in-circuit-das-2026-05-08/index.html">Post Quantum Proofs of Reed-Solomon Codes with leanVM</a>
-        <p>Research deck on proof systems for Reed-Solomon codes and data availability sampling.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>LeanAIR</div>
-      <div class="tl-body">
-        <a href="writeups/leanair-construction-4-direct-air.html">Post Quantum Proofs of Reed-Solomon Codes with LeanAIR</a>
-        <p>LeanAIR experiment proving a post-quantum Reed-Solomon data-availability commitment with only the essential Poseidon, WHIR, wiring, and row-code checks.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-meta">Writeup<br>DAS</div>
-      <div class="tl-body">
-        <a href="writeups/pipelined-blob-proof-dissemination.html">Pipelined PQ blob dissemination</a>
-        <p>Bandwidth analysis of a concrete 100 kB proof example comparing pipelined column-sample diffs with an end-of-slot burst.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tl-section">
-  <h2>Formal Verification</h2>
-  <div class="tl-list">
-    <div class="tl-item">
-      <div class="tl-meta">Deck<br>Jun 2026</div>
-      <div class="tl-body">
-        <a href="presentations/evm-sail-overview/index.html">evm-sail — A formal specification of the EVM</a>
-        <p>Formal, executable EVM specification in Sail — one source of truth, with a kernel-interface design and extraction to Lean, Islaris, C, RISC-V and Rocq for proofs, conformance and a zkEVM guest.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-</div>
 EOF
+
+    # Sections: decks auto-discovered from frontmatter, writeups from arrays,
+    # ordered by category_order (mirrors the sidebar in generate_summary).
+    local category i wrote_header
+    for category in "${category_order[@]}"; do
+        wrote_header=0
+        for i in "${!deck_names[@]}"; do
+            [[ "${deck_categories[$i]}" == "${category}" ]] || continue
+            [[ ${wrote_header} -eq 0 ]] && { homepage_section_open "${category}"; wrote_header=1; }
+            homepage_card "presentations/${deck_names[$i]}/index.html" \
+                "${deck_kinds[$i]}" "${deck_dates[$i]}" \
+                "${deck_nav_titles[$i]}" "${deck_descriptions[$i]}"
+        done
+        if [[ "${category}" == "EIP-8025" ]]; then
+            for i in "${!writeup_titles[@]}"; do
+                [[ ${wrote_header} -eq 0 ]] && { homepage_section_open "${category}"; wrote_header=1; }
+                homepage_card "writeups/${writeup_slugs[$i]}.html" "Writeup" "" \
+                    "${writeup_nav_titles[$i]}" "${writeup_descriptions[$i]}"
+            done
+        elif [[ "${category}" == "Post Quantum Data Availability" ]]; then
+            for i in "${!research_writeup_titles[@]}"; do
+                [[ ${wrote_header} -eq 0 ]] && { homepage_section_open "${category}"; wrote_header=1; }
+                homepage_card "writeups/${research_writeup_slugs[$i]}.html" "Writeup" "" \
+                    "${research_writeup_nav_titles[$i]}" "${research_writeup_descriptions[$i]}"
+            done
+        fi
+        [[ ${wrote_header} -eq 1 ]] && homepage_section_close
+    done
+
+    printf '\n</div>\n' >> "book/src/README.md"
 
     log_success "Tau Lepton landing page generated"
 }

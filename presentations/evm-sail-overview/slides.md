@@ -6,6 +6,8 @@ size: 16:9
 math: katex
 title: evm-sail — A formal specification of the EVM
 category: Formal Verification
+date: "Jun 2026"
+description: "Formal, executable EVM specification in Sail — one source of truth, with a kernel-interface design and extraction to Lean, Islaris, C, RISC-V and Rocq for proofs, conformance and a zkEVM guest."
 style: |
   section {
     font-family: 'Inter', system-ui, sans-serif;

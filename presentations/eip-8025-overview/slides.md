@@ -7,6 +7,7 @@ backgroundColor: #f8fafc
 math: katex
 title: Overview Deck
 category: EIP-8025
+description: "Visual resource deck covering the execution proof flow."
 aspect: "Social portrait / 1080x1240"
 ---
 

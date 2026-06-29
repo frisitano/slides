@@ -6,6 +6,8 @@ paginate: true
 backgroundColor: #fff
 title: Optional Proofs Progress Update — February 11, 2026
 category: EIP-8025
+kind: Progress
+description: "Consensus layer integration, proof engine, and proof gossip protocol."
 ---
 
 <!-- Load Mermaid.js for diagram rendering -->
