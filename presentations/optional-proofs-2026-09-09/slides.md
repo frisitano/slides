@@ -22,6 +22,23 @@ style: |
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
     padding: 64px 72px;
   }
+  section.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  section.title h1 {
+    font-size: 58px;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+  section.title p {
+    color: var(--slate);
+    font-size: 23px;
+    margin-top: 22px;
+  }
   section.prs h1 {
     font-size: 46px;
     letter-spacing: -0.035em;
@@ -46,6 +63,14 @@ style: |
   section.prs a {
     color: var(--teal);
   }
+---
+
+<!-- _class: title -->
+
+# EIP-8025 progress
+
+Breakout call · September 9, 2026
+
 ---
 
 <!-- _class: prs -->
