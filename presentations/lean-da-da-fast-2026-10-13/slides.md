@@ -97,6 +97,16 @@ style: |
     background: #fbfcfd;
     border-color: #e9ecef;
   }
+  .fullfit img {
+    max-height: 540px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background: white;
+  }
   .full img {
     width: 100%;
     border: 1px solid #ced4da;
@@ -398,6 +408,18 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 </div>
 
 </div>
+
+</div>
+
+---
+
+<!-- _class: tight -->
+
+## LeanVM Construction 3 — the commitment, end to end
+
+<div class="fullfit">
+
+![leanDA commitment pipeline](assets/leanda-commitment.png)
 
 </div>
 
