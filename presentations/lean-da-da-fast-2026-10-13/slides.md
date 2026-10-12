@@ -170,7 +170,7 @@ description: "The leanDA commitment scheme and binding argument, the LeanAIR pro
 **1. Commit rows and sample the RLC challenge.** The transcript binds every row root before sampling $\rho$.
 
 $$
-D = H(\operatorname{root}(C_0),\ldots,\operatorname{root}(C_{m-1})),
+D = H(\operatorname{root}(C_0),\ldots,\operatorname{root}(C_{B-1})),
 \qquad
 \rho = H(D)
 $$
@@ -182,7 +182,7 @@ $$
 **2. Build one extension-field aggregate codeword.** Every column is combined with powers of $\rho$.
 
 $$
-C^\star[j] = \sum_{i=0}^{m-1}\rho^i C_i[j]
+C^\star[j] = \sum_{i=0}^{B-1}\rho^i C_i[j]
 $$
 
 </div>
@@ -216,7 +216,7 @@ $$
 
 | benchmark | parameters | prove | message throughput | proof |
 |---|---:|---:|---:|---:|
-| leanDAS headline | $m=240,\ n=4096$, half-rate | 5.28 s | 364 KB/s | 356 KiB |
+| leanDAS headline | $B=240,\ n=4096$, half-rate | 5.28 s | 364 KB/s | 356 KiB |
 
 </div>
 
