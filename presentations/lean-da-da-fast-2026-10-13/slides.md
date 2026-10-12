@@ -415,83 +415,23 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-## DA.fast — the problem
+## DA.fast
 
-Four constructions in roughly six months. Each one hand-designed, each a single point in a space whose axes we can already name.
+The properties a data-availability scheme has to satisfy are already settled.
 
-<div class="grid">
-
-<div>
-
-**The axes are known:**
-
-- what is arithmetized vs. what is a PCS opening
-- materialized roots vs. virtual views
-- where the low-degree test lives
-- cell geometry — $L$, systematic fraction, chunking
-- hash and field choice
-- proof backend and recursion shape
-
-</div>
-
-<div>
+**Foundations of Data Availability Sampling** — Hall-Andersen, Simkin and Wagner — gives the security definitions, and [`b-wagn/fv-pq-da`](https://github.com/b-wagn/fv-pq-da) carries a **Lean 4 formalization** of them for the post-quantum construction: perfect completeness, position binding, code binding, and non-interactive committed soundness, each with concrete bounds.
 
 <div class="claim">
 
-We are searching by hand a space we can describe.
+The target is fixed, precise and machine-checked. What is still open is the **algorithm**.
 
-The bottleneck is not insight. It is that each point costs weeks of implementation to evaluate, so we evaluate very few of them.
-
-</div>
+**DA.fast** is a competition to find the most efficient construction that meets it.
 
 </div>
-
-</div>
-
-**DA.fast** is an autoresearch harness over that space: generate candidate constructions, implement and benchmark them automatically, and let the search rather than the calendar decide what gets built.
-
----
-
-<!-- _class: dense -->
-
-## DA.fast — the strongest known direction
-
-**Hashless, PCS-native LeanAIR.** Stop arithmetizing the commitment computation. Commit the cell trace directly, prove *only* the row low-degree condition, and let PCS openings certify sampled cells, rows and columns against the same top-level object $D$.
-
-<div class="grid">
-
-<div>
-
-**Removed from the relation:**
-
-- the dedicated Poseidon trace
-- cell hash chain links
-- row digest links
-- column Merkle links and column-root links
-- the final-root hash
-
-</div>
-
-<div>
-
-**What stays:**
-
-- the row parity check — already the component we want
-- WHIR, which still uses Merkle internally as its PCS mechanism
 
 <div class="note">
 
-"Hashless" means no Poseidon/Merkle computation is arithmetized *inside* LeanAIR — not that hashing disappears.
-
-</div>
-
-</div>
-
-</div>
-
-<div class="claim">
-
-First implementation should be a **single global-trace commitment with virtual row and column views**, rather than materialized row and column roots.
+The Lean development proves statements about an abstract scheme under assumptions on abstract building blocks. It does not stand in for auditing an implementation.
 
 </div>
 
