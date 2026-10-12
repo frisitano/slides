@@ -451,8 +451,6 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-<!-- _class: tight -->
-
 ## BiB — Block-in-Blobs
 
 <div class="shot">
@@ -464,26 +462,6 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 <div class="shot">
 
 ![EIP-8142 abstract](assets/bib-eip-abstract.png)
-
-</div>
-
-<div class="grid">
-
-<div>
-
-**What this reopens:** how RPCs and indexers access block data, how archival nodes serve historical execution data, transaction inclusion proofs, light-client proof generation, and the boundary between consensus-persisted and blob-reconstructed data.
-
-</div>
-
-<div>
-
-<div class="counter">
-
-**Position:** blocks-from-blobs should not be the primary source of truth for execution data. There has to be a clear boundary for data alignment between the consensus and execution layers, and "reconstruct it from blobs" does not draw one.
-
-</div>
-
-</div>
 
 </div>
 
