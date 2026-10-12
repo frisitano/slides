@@ -469,43 +469,9 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ## To blob or not to blob
 
-<div class="grid">
-
-<div>
-
-**The proposal.** Under BiB we gossip payload blobs anyway. So blob transactions look redundant — drop them, and put the data in calldata instead.
-
-<div class="counter">
-
-**Two objections.**
-
-**It bloats the payload.** Calldata is payload; blobs are not.
-
-**It changes the retention class.** Payload must be retained to the **history requirement**. Blobs have a **fixed, bounded lifespan**.
-
-</div>
-
-</div>
-
-<div>
-
-<div class="claim">
-
-Unifying the two silently converts bounded-lifetime data into history-lifetime data.
-
-That is the cost the proposal does not price. The blob/calldata split is not only an availability mechanism — it is a *retention* mechanism, and collapsing it discards the shorter guarantee.
-
-</div>
-
-<div class="note">
-
-Any serious unification therefore needs an explicit lifetime dimension in pricing, not just a size dimension.
-
-</div>
-
-</div>
-
-</div>
+- **The proposal.** Under BiB we gossip payload blobs anyway. So blob transactions look redundant — drop them, and put the data in calldata instead.
+- **It bloats the payload.** Calldata is payload; blobs are not.
+- **It changes the retention class.** Payload must be retained to the **history requirement**. Blobs have a **fixed, bounded lifespan**.
 
 ---
 
