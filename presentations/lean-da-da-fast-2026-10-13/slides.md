@@ -415,7 +415,7 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 <!-- _class: tight -->
 
-## LeanVM Construction 3 — the commitment, end to end
+## LeanVM Construction 3 — the commitment visualised
 
 <div class="fullfit">
 
