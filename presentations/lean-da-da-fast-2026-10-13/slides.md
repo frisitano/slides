@@ -405,7 +405,7 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 <!-- _class: tight -->
 
-## LeanAIR — the circuit
+## LeanAIR
 
 <div class="full">
 
