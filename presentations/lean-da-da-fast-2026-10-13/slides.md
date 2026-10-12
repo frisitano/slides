@@ -97,6 +97,13 @@ style: |
     background: #fbfcfd;
     border-color: #e9ecef;
   }
+  .shot img {
+    width: 100%;
+    display: block;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+  }
+  .shot { margin-bottom: 0.5rem; }
   .fullfit img {
     max-height: 540px;
     width: auto;
@@ -444,21 +451,27 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
+<!-- _class: tight -->
+
 ## BiB — Block-in-Blobs
 
-The execution payload leaves the consensus layer. It becomes a non-first-class citizen with a **1-of-N** availability assumption, and block data is reconstructed by streaming chunks from blobs rather than carried as a monolithic payload.
+<div class="shot">
+
+![EIP-8142 title](assets/bib-eip-title.png)
+
+</div>
+
+<div class="shot">
+
+![EIP-8142 abstract](assets/bib-eip-abstract.png)
+
+</div>
 
 <div class="grid">
 
 <div>
 
-**What this reopens:**
-
-- how RPCs and indexers access block data
-- how archival nodes store and serve historical execution data
-- transaction inclusion proof mechanisms
-- light-client proof generation
-- the boundary between consensus-persisted and blob-reconstructed data
+**What this reopens:** how RPCs and indexers access block data, how archival nodes serve historical execution data, transaction inclusion proofs, light-client proof generation, and the boundary between consensus-persisted and blob-reconstructed data.
 
 </div>
 
@@ -466,9 +479,7 @@ The execution payload leaves the consensus layer. It becomes a non-first-class c
 
 <div class="counter">
 
-**Position:** blocks-from-blobs should not be the primary source of truth for execution data.
-
-There has to be a clear boundary for data alignment between the consensus and execution layers, and "reconstruct it from blobs" does not draw one.
+**Position:** blocks-from-blobs should not be the primary source of truth for execution data. There has to be a clear boundary for data alignment between the consensus and execution layers, and "reconstruct it from blobs" does not draw one.
 
 </div>
 
