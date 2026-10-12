@@ -27,7 +27,7 @@
    "type": "text",
    "x": 34,
    "y": 26,
-   "text": "LeanAIR — the whole proof is one Poseidon trace",
+   "text": "LeanAIR — the whole proof is one Poseidon chip trace",
    "fontSize": 28,
    "fontFamily": 2,
    "strokeColor": "#0f172a"
@@ -67,9 +67,9 @@
    "updatedAt": "2026-10-12T11:00:00.000Z",
    "version": 1,
    "type": "text",
-   "x": 596,
+   "x": 592,
    "y": 126,
-   "text": "rounds",
+   "text": "rounds[68]",
    "fontSize": 16,
    "fontFamily": 3,
    "strokeColor": "#868e96"
