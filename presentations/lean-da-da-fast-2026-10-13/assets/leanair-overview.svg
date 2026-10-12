@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="700" viewBox="0 0 1480 700" role="img" aria-labelledby="title desc">
+  <title id="title">LeanAIR circuit design</title>
+  <desc id="desc">The LeanAIR prover: a dedicated Poseidon hasher chip under a public row schedule, with local AIR constraints, dense cell-chain links, sparse virtual schedule relations, and the barycentric row parity check, all committed as one global polynomial by WHIR, with throughput numbers.</desc>
+  <defs>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="aSlate" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <marker id="aPink" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#be185d"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .t { font: 700 26px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0f172a; }
+      .sub { font: 400 15px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #475569; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; }
+      .ch { font: 700 15px system-ui, -apple-system, "Segoe UI", sans-serif; }
+      .cb { font: 400 13px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #475569; }
+      .mono { font: 400 12px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #334155; }
+      .bandt { font: 600 13px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #0f172a; }
+      .bandc { font: 400 11.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #64748b; }
+      .lbl { font: 700 11.5px system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: 0.07em; }
+      .num { font: 700 24px system-ui, -apple-system, "Segoe UI", sans-serif; }
+      .numl { font: 400 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1480" height="700"/>
+  <text class="t" x="34" y="40">LeanAIR — proving the DA commitment directly, with no VM layer</text>
+  <text class="sub" x="34" y="64">One deterministic Poseidon trace under a public schedule. Local constraints in AIR; everything non-local as a linear claim.</text>
+
+  <!-- ============ LEFT: committed data ============ -->
+  <rect class="card" x="30" y="92" width="218" height="214" rx="10" filter="url(#sh)"/>
+  <text class="lbl" x="46" y="117" fill="#2563eb">COMMITTED DATA</text>
+  <text class="ch" x="46" y="142">RS row codewords</text>
+  <text class="cb" x="46" y="161">n rows, length 2M over E</text>
+  <rect x="46" y="173" width="186" height="28" fill="#eff6ff" stroke="#bfdbfe" rx="5"/>
+  <text class="mono" x="56" y="192">C_i[0 .. 2M-1]</text>
+  <text class="cb" x="46" y="224">split into fixed cells,</text>
+  <text class="cb" x="46" y="242">then base-field limbs</text>
+  <rect x="46" y="254" width="186" height="26" fill="#f1f5f9" stroke="#e2e8f0" rx="5"/>
+  <text class="mono" x="56" y="272">C_i[t].limb_k</text>
+
+  <path d="M248,195 L270,195" stroke="#334155" stroke-width="1.8" fill="none" marker-end="url(#aSlate)"/>
+
+  <!-- what the VM cost -->
+  <rect x="30" y="320" width="218" height="150" fill="#f1f5f9" stroke="#e2e8f0" rx="10"/>
+  <text class="lbl" x="46" y="344" fill="#64748b">REMOVED WITH THE VM</text>
+  <text class="cb" x="46" y="366" font-size="12">instruction decoding</text>
+  <text class="cb" x="46" y="386" font-size="12">bytecode accumulation</text>
+  <text class="cb" x="46" y="406" font-size="12">memory indirection</text>
+  <text class="cb" x="46" y="426" font-size="12">precompile routing</text>
+  <text class="cb" x="46" y="446" font-size="12">generic ext arithmetic</text>
+
+  <text class="cb" x="30" y="500" font-size="12" font-style="italic">Same field stack, Poseidon,</text>
+  <text class="cb" x="30" y="518" font-size="12" font-style="italic">WHIR PCS and transcript.</text>
+
+  <!-- ============ CENTER: the hasher chip ============ -->
+  <rect x="272" y="92" width="358" height="578" fill="url(#chipGrad)" stroke="#94a3b8" stroke-width="1.6" rx="12" filter="url(#sh)"/>
+  <text class="lbl" x="290" y="117" fill="#334155">DEDICATED POSEIDON16 HASHER CHIP</text>
+  <text class="cb" x="290" y="137" font-size="12.5">inputs[16] → round state → outputs[8]</text>
+  <line x1="290" y1="149" x2="612" y2="149" stroke="#cbd5e1" stroke-width="1"/>
+  <text class="lbl" x="290" y="170" fill="#64748b">PUBLIC ROW SCHEDULE</text>
+
+  <rect x="290" y="180" width="322" height="52" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="199">Cell</text>
+  <text class="bandc" x="302" y="215">hash every cell → q[i,j]</text>
+  <text class="bandc" x="302" y="228">n_rows · num_cells · chunks</text>
+
+  <rect x="290" y="240" width="322" height="52" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="259">SystematicRow</text>
+  <text class="bandc" x="302" y="275">q[i,0..sys) → rowCommit_i</text>
+  <text class="bandc" x="302" y="288">n_rows · num_sys</text>
+
+  <rect x="290" y="300" width="322" height="52" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="319">RowRoot</text>
+  <text class="bandc" x="302" y="335">rowCommit_i → R_rows</text>
+  <text class="bandc" x="302" y="348">n_rows</text>
+
+  <rect x="290" y="360" width="322" height="52" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="379">ColumnMerkle</text>
+  <text class="bandc" x="302" y="395">q[*,j] → col_j</text>
+  <text class="bandc" x="302" y="408">num_cells · (padded_rows - 1)</text>
+
+  <rect x="290" y="420" width="322" height="52" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="439">ColumnRoot</text>
+  <text class="bandc" x="302" y="455">col_j → R_col</text>
+  <text class="bandc" x="302" y="468">num_cells - 1</text>
+
+  <rect x="290" y="480" width="322" height="52" rx="6" fill="#fdf2f8" stroke="#f9a8d4" stroke-width="1.2"/>
+  <text class="bandt" x="302" y="499">FinalRoot</text>
+  <text class="bandc" x="302" y="515">H(R_rows, R_col) → D</text>
+  <text class="bandc" x="302" y="528">1 row — constrained to public D</text>
+
+  <rect x="290" y="544" width="322" height="50" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
+  <text class="ch" x="302" y="564" font-size="13.5">WHIR commits the whole table</text>
+  <text class="mono" x="302" y="583">global[col · padded_rows + row]</text>
+
+  <rect x="290" y="604" width="322" height="50" fill="#0f172a" rx="7"/>
+  <text class="lbl" x="302" y="624" fill="#93c5fd">ONE BATCHED CLAIM</text>
+  <text x="302" y="644" font-size="12.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#e2e8f0">AIR + η·cell_link + η²·sparse</text>
+
+  <!-- ============ RIGHT: the four relation families ============ -->
+  <text class="lbl" x="656" y="117" fill="#334155">WHAT IS ACTUALLY CONSTRAINED</text>
+
+  <rect class="card" x="656" y="130" width="528" height="94" rx="10" filter="url(#sh)"/>
+  <rect x="656" y="130" width="6" height="94" fill="#2563eb" rx="3"/>
+  <circle cx="687" cy="157" r="11" fill="#2563eb"/>
+  <text x="687" y="162" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">1</text>
+  <text class="ch" x="709" y="162" fill="#1e3a8a">Local AIR — Poseidon rounds</text>
+  <text class="cb" x="679" y="186">Each row is a valid width-16 compression. Partial rounds</text>
+  <text class="cb" x="679" y="203">held at degree 3 on the low-degree AIR path.</text>
+  <text class="mono" x="679" y="218" font-size="11">low_degree_air() = Some((3, DEDICATED_HASH_PARTIAL_ROUNDS))</text>
+
+  <rect class="card" x="656" y="236" width="528" height="80" rx="10" filter="url(#sh)"/>
+  <rect x="656" y="236" width="6" height="80" fill="#15803d" rx="3"/>
+  <circle cx="687" cy="263" r="11" fill="#15803d"/>
+  <text x="687" y="268" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">2</text>
+  <text class="ch" x="709" y="268" fill="#14532d">Dense relations — the cell hash chain</text>
+  <text class="cb" x="679" y="292">Every incremental chunk feeds the next, row to row.</text>
+  <text class="mono" x="679" y="309">output(prev_chunk)[limb] = input(next_chunk)[limb]</text>
+
+  <rect class="card" x="656" y="328" width="528" height="98" rx="10" filter="url(#sh)"/>
+  <rect x="656" y="328" width="6" height="98" fill="#b45309" rx="3"/>
+  <circle cx="687" cy="355" r="11" fill="#b45309"/>
+  <text x="687" y="360" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">3</text>
+  <text class="ch" x="709" y="360" fill="#78350f">Virtual relations — the schedule wiring</text>
+  <text class="cb" x="679" y="384">Global linear identities, not local transitions. The schedule</text>
+  <text class="cb" x="679" y="401">is public, so both sides derive every coefficient.</text>
+  <text class="mono" x="679" y="418" font-size="11">source_digest_limb - sink_input_limb = 0 | zero_padding = 0</text>
+
+  <rect class="card" x="656" y="438" width="528" height="118" rx="10" filter="url(#sh)"/>
+  <rect x="656" y="438" width="6" height="118" fill="#be185d" rx="3"/>
+  <circle cx="687" cy="465" r="11" fill="#be185d"/>
+  <text x="687" y="470" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">4</text>
+  <text class="ch" x="709" y="470" fill="#831843">Parity check — the row low-degree test</text>
+  <text class="cb" x="679" y="494">Barycentric evens/odds identity per row, batched over rows.</text>
+  <text class="mono" x="679" y="513">Σ_i α^i ( Σ_j s_L[j]·C_i[2j] − Σ_j s_R[j]·C_i[2j+1] ) = 0</text>
+  <text class="cb" x="679" y="534" font-weight="600" fill="#831843">No second copy of the codeword — it reads the same limbs</text>
+  <text class="cb" x="679" y="549" font-weight="600" fill="#831843">the Cell rows absorb. That is the binding.</text>
+
+  <path d="M656,496 C638,496 632,208 616,208" stroke="#be185d" stroke-width="1.7" fill="none" stroke-dasharray="5 4" marker-end="url(#aPink)" opacity="0.8"/>
+
+  <rect x="656" y="568" width="528" height="102" fill="#f8fafc" stroke="#e2e8f0" rx="10"/>
+  <text class="lbl" x="676" y="592" fill="#64748b">THE SPLIT</text>
+  <text class="cb" x="676" y="614" font-size="12.5">Poseidon arithmetic is <tspan font-weight="700">local</tspan> → belongs in AIR.</text>
+  <text class="cb" x="676" y="634" font-size="12.5">Schedule wiring is <tspan font-weight="700">global</tspan> → a sparse linear claim.</text>
+  <text class="cb" x="676" y="654" font-size="12.5">The row LDT is <tspan font-weight="700">naturally</tspan> a global linear identity.</text>
+  <text class="cb" x="1010" y="592" font-size="11.5" font-style="italic" fill="#94a3b8">no lookup table</text>
+  <text class="cb" x="1010" y="608" font-size="11.5" font-style="italic" fill="#94a3b8">no memory columns</text>
+  <text class="cb" x="1010" y="624" font-size="11.5" font-style="italic" fill="#94a3b8">no logup</text>
+
+  <!-- ============ FAR RIGHT: numbers rail ============ -->
+  <rect x="1206" y="92" width="244" height="578" fill="#ffffff" stroke="#cbd5e1" rx="10" filter="url(#sh)"/>
+  <text class="lbl" x="1224" y="117" fill="#64748b">THROUGHPUT</text>
+  <text class="cb" x="1224" y="136" font-size="11.5">192-vCPU Graviton4 (c8g.48xlarge)</text>
+  <text class="cb" x="1224" y="151" font-size="11.5">n_rows = 101</text>
+  <line x1="1224" y1="164" x2="1432" y2="164" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text class="numl" x="1224" y="192">leanVM — baseline parity</text>
+  <text class="num" x="1224" y="222" fill="#94a3b8">1.37</text>
+  <text class="numl" x="1282" y="222">MiB/s</text>
+
+  <text class="numl" x="1224" y="264">leanVM — column-commit</text>
+  <text class="num" x="1224" y="294" fill="#94a3b8">1.19</text>
+  <text class="numl" x="1282" y="294">MiB/s</text>
+
+  <line x1="1224" y1="320" x2="1432" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text class="numl" x="1224" y="348" fill="#15803d">LeanAIR — single proof</text>
+  <text class="num" x="1224" y="382" fill="#15803d">~7.5</text>
+  <text class="numl" x="1290" y="382">MiB/s</text>
+
+  <text class="numl" x="1224" y="424" fill="#2563eb">LeanAIR — parallel batch</text>
+  <text class="num" x="1224" y="458" fill="#2563eb">25.1</text>
+  <text class="numl" x="1282" y="458">MiB/s</text>
+
+  <line x1="1224" y1="486" x2="1432" y2="486" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="numl" x="1224" y="510" font-size="11.5">64-vCPU (c8g.16xlarge)</text>
+  <text class="num" x="1224" y="538" font-size="19" fill="#64748b">12.8</text>
+  <text class="numl" x="1274" y="538" font-size="11.5">MiB/s batch</text>
+
+  <rect x="1224" y="560" width="208" height="96" fill="#fffbeb" stroke="#fde68a" rx="7"/>
+  <text class="cb" x="1236" y="581" font-size="11" fill="#78350f" font-weight="700">Read with care</text>
+  <text class="cb" x="1236" y="599" font-size="10.5" fill="#78350f">Single-proof LeanAIR is</text>
+  <text class="cb" x="1236" y="613" font-size="10.5" fill="#78350f">approximate — run artifact</text>
+  <text class="cb" x="1236" y="627" font-size="10.5" fill="#78350f">not in repo. Batch figure is</text>
+  <text class="cb" x="1236" y="641" font-size="10.5" fill="#78350f">vs. unparallelized leanVM.</text>
+</svg>
