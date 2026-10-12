@@ -151,7 +151,7 @@ description: "The leanDA commitment scheme and binding argument, the LeanAIR pro
 
 <!-- _class: construction -->
 
-## Construction 1 — RLC + FRI Fold In Circuit
+## LeanVM Construction 1 — RLC + FRI Fold
 
 <div class="construction-grid">
 
@@ -233,7 +233,7 @@ Run: <code>cargo run --release --bin leandas -- -m 240 -n 4096 --zkvm</code>
 
 <!-- _class: construction -->
 
-## Construction 2 — Barycentric Check Per Row
+## LeanVM Construction 2 — Barycentric Check Per Row
 
 <div class="construction-grid">
 
@@ -307,7 +307,7 @@ Run: <code>cargo run --release -p lean-da -- --n-blobs 32</code>
 
 <!-- _class: construction construction4 -->
 
-## Construction 3 — Systematic Row Digests + Column Merkle Commitments + Row Barycentric Checks + Cell-Level Sampling
+## LeanVM Construction 3 — Systematic Row Digests + Column Merkle Commitments + Row Barycentric Checks
 
 <div class="construction-grid diagram-heavy">
 
