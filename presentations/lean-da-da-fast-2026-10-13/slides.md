@@ -475,7 +475,7 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-## Packing — or not packing
+## Blob Packing
 
 Today the grid is fixed and data is packed into it during block building.
 
