@@ -403,34 +403,6 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-<!-- _class: dense -->
-
-## The row low-degree test
-
-For row codeword $C_i$ of length $2M$, with $w$ a primitive $2M$-th root of unity and $u=w^2$, the even and odd halves define interpolants $L_i$ and $R_i$. A valid row satisfies $L_i \equiv R_i$. At challenge $r$:
-
-$$
-\sum_{j=0}^{M-1}s_L[j]\,C_i[2j]\;=\;\sum_{j=0}^{M-1}s_R[j]\,C_i[2j+1]
-\qquad
-s_L[j]=\frac{r^M-1}{ru^{-j}-1},\quad
-s_R[j]=-\frac{r^M+1}{rw^{-1}u^{-j}-1}
-$$
-
-All rows are batched under a challenge derived from the public commitment, so one claim covers the batch:
-
-$$
-\sum_i \alpha^i\left(\sum_j s_L[j]\,C_i[2j]-\sum_j s_R[j]\,C_i[2j+1]\right)=0,
-\qquad \alpha = H(\ldots \| D)
-$$
-
-| blobs | cycles | Poseidon16 | proof | throughput |
-|---:|---:|---:|---:|---:|
-| 12 | 261,655 | 133,135 | 319.83 KiB | 770.04 KiB/s |
-| 24 | 448,463 | 266,271 | 338.14 KiB | 711.70 KiB/s |
-| 46 | 821,011 | 513,087 | 363.20 KiB | **1,150.06 KiB/s** |
-
----
-
 <!-- _class: tight -->
 
 ## LeanAIR — the circuit
