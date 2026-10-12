@@ -437,25 +437,10 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-## DA.fast
+## da.fast — Autoresearch data availability algorithm
 
-The properties a data-availability scheme has to satisfy are already settled.
-
-**Foundations of Data Availability Sampling** — Hall-Andersen, Simkin and Wagner — gives the security definitions, and [`b-wagn/fv-pq-da`](https://github.com/b-wagn/fv-pq-da) carries a **Lean 4 formalization** of them for the post-quantum construction: perfect completeness, position binding, code binding, and non-interactive committed soundness, each with concrete bounds.
-
-<div class="claim">
-
-The target is fixed, precise and machine-checked. What is still open is the **algorithm**.
-
-**DA.fast** is a competition to find the most efficient construction that meets it.
-
-</div>
-
-<div class="note">
-
-The Lean development proves statements about an abstract scheme under assumptions on abstract building blocks. It does not stand in for auditing an implementation.
-
-</div>
+- **Foundations of Data Availability Sampling** — Hall-Andersen, Simkin and Wagner: define the desired properties
+- **Lean formalization exists**: [github.com/b-wagn/fv-pq-da](https://github.com/b-wagn/fv-pq-da)
 
 ---
 
