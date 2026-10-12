@@ -4,8 +4,8 @@ theme: default
 paginate: true
 size: 16:9
 math: katex
-header: 'leanDA · DA.fast'
-footer: 'Tau Lepton · 2026'
+header: 'The Future of Blobs'
+footer: 'Francesco Risitano · 2026'
 style: |
   section {
     font-family: 'Inter', system-ui, sans-serif;
@@ -72,20 +72,20 @@ style: |
   .center { text-align: center; }
   ul { margin-top: 0.3rem; }
   li { margin-bottom: 0.3rem; }
-title: leanDA and DA.fast — Post-Quantum Data Availability
+title: The Future of Blobs
 category: Post Quantum Data Availability
-nav_title: "leanDA & DA.fast"
+nav_title: "The Future of Blobs"
 order: 0
 description: "The leanDA commitment scheme and binding argument, the LeanAIR prover, the DA.fast construction search, and the protocol questions that follow."
 ---
 
 <!-- _class: lead -->
 
-# leanDA & DA.fast
+# The Future of Blobs
 
-## Post-quantum data availability — the construction, the prover, and the open search
+## Post-quantum data availability and beyond
 
-**Tau Lepton** · 12 October 2026
+**Francesco Risitano** · 12 October 2026
 
 ---
 
