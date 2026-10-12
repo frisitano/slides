@@ -492,88 +492,9 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ## Decentralised state & history
 
-<div class="grid">
-
-<div>
-
-**Shard peers into state custody groups.** Each peer is assigned a shard rather than the whole state.
-
-**Enhanced BALs** carry merkle branches for the boundaries of each shard, and the BALs are placed in blobs.
-
-**Each peer maintains a finalized snapshot** of its assigned shard and advances it using those enhanced BALs.
-
-</div>
-
-<div>
-
-**Availability** of state updates is ensured by erasure coding.
-
-**Durability** is ensured by replicating each shard across peers.
-
-**Mempools** are maintained by requesting state proofs from peers and updating them with BALs.
-
-</div>
-
-</div>
-
-<div class="claim">
-
-The BAL stops being an execution optimisation and becomes the state-synchronisation primitive: the thing that lets a peer holding one shard stay correct about its shard without seeing the rest.
-
-</div>
-
----
-
-## What that costs
-
-<div class="grid">
-
-<div>
-
-No peer holds full state. So every operation that used to be local becomes a **network request plus a proof verification**.
-
-Mempool validation is the sharpest case: transaction admission now depends on peers answering state-proof requests inside the admission window.
-
-</div>
-
-<div>
-
-<div class="counter">
-
-**The trade to argue:** state size stops being a per-node cost and becomes a network-wide one, paid in latency and in liveness coupling between peers.
-
-Erasure coding covers availability and replication covers durability — but neither covers a peer that is simply slow to answer.
-
-</div>
-
-</div>
-
-</div>
-
----
-
-<!-- _class: dense -->
-
-## Where this leaves us
-
-**Construction.** The hashless PCS-native design is the next concrete step. DA.fast is how we get past it without another six months of hand-designed points.
-
-**Prover.** LeanAIR already removed the VM layer. The remaining question is which backend, and that is decided by what 8288's aggregation settles on — not chosen independently.
-
-**Retention is the unpriced dimension.** The blob-or-calldata debate is really about lifetime, and neither side currently prices it.
-
-**Custody over cells, not over a grid**, is what makes packing unnecessary rather than merely cheaper.
-
-**Decentralised state** is the furthest out, and the honest open question is admission latency, not correctness.
-
----
-
-<!-- _class: lead -->
-
-# Questions
-
-**leanDA** · `frisitano/leanDAS`, `leanEthereum/leanMultisig`
-
-**LeanAIR** · `crates/lean-air`
-
-**Aggregation** · EIP-8288
+- **Shard peers into state custody groups.** Each peer is assigned a shard rather than the whole state.
+- **Enhanced BALs** carry merkle branches for the boundaries of each shard, and the BALs are placed in blobs.
+- **Each peer maintains a finalized snapshot** of its assigned shard and advances it using those enhanced BALs.
+- **Availability** of state updates is ensured by erasure coding.
+- **Durability** is ensured by replicating each shard across peers.
+- **Mempools** are maintained by requesting state proofs from peers and updating them with BALs.
