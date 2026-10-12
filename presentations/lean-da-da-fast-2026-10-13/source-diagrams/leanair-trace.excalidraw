@@ -27,7 +27,7 @@
    "type": "text",
    "x": 34,
    "y": 26,
-   "text": "LeanAIR — the whole proof is one Poseidon chip trace",
+   "text": "LeanAIR — the whole proof is one Hasher chip trace",
    "fontSize": 28,
    "fontFamily": 2,
    "strokeColor": "#0f172a"
@@ -41,7 +41,7 @@
    "type": "text",
    "x": 34,
    "y": 64,
-   "text": "Rows are a public schedule. Columns are the Poseidon witness. Everything non-local is a linear claim over those same committed columns.",
+   "text": "Rows are a public schedule. Columns are the hasher witness. Everything non-local is a linear claim over those same committed columns.",
    "fontSize": 18,
    "fontFamily": 2,
    "strokeColor": "#495057"
@@ -1708,7 +1708,7 @@
    "type": "text",
    "x": 948,
    "y": 188,
-   "text": "Local AIR — Poseidon rounds",
+   "text": "Local AIR — hasher rounds",
    "fontSize": 16,
    "fontFamily": 2,
    "strokeColor": "#1971c2"
