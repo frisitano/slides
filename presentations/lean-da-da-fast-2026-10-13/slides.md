@@ -477,35 +477,9 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ## Blob Packing
 
-Today the grid is fixed and data is packed into it during block building.
-
-**Alternative:** treat each blob as an **arbitrary-sized erasure-coded bytestring**, and assign custody groups over **cells of the blob** rather than over a traditional fixed grid.
-
-<div class="grid">
-
-<div>
-
-**What this buys:**
-
-- blob size decouples from a protocol-fixed grid
-- no packing step at build time
-- custody is expressed over the object that actually exists
-
-</div>
-
-<div>
-
-<div class="note">
-
-**Prior art on the time dimension:** EIP-8256 (Blob Streaming) splits propagation into ahead-of-time and just-in-time lanes, with AOT capacity gated by a ticket contract, so sampling can cover the whole slot.
-
-Different mechanism, same underlying observation — blob delivery has a time shape, and the protocol currently ignores it.
-
-</div>
-
-</div>
-
-</div>
+- **Defer blob packing to the builder.** Blobs are not formed until the builder has built the payload, so the bandwidth all lands on the hot path — no sparse blob pool, and no ahead-of-time distribution.
+- **Allow dynamically sized cells.** Every blob is 128 cells whatever its size, and each cell commits to data of arbitrary size.
+- **Price it as fixed plus marginal.** The 128 cells and their Merkle paths are a fixed overhead per blob regardless of size; the data itself is a cost per byte.
 
 ---
 
