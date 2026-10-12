@@ -2930,7 +2930,7 @@
    "width": 130,
    "height": 44,
    "backgroundColor": "transparent",
-   "strokeColor": "#c2255c",
+   "strokeColor": "#6741d9",
    "strokeWidth": 2,
    "strokeStyle": "dashed"
   },
@@ -2946,7 +2946,7 @@
    "text": "= D",
    "fontSize": 18,
    "fontFamily": 3,
-   "strokeColor": "#c2255c"
+   "strokeColor": "#6741d9"
   },
   {
    "id": "la194",
