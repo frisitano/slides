@@ -483,44 +483,10 @@ Run: <code>cargo run --release -p lean-da -- --construction column-commit --n-bl
 
 ---
 
-<!-- _class: dense -->
-
 ## Blobpool proving
 
-Generate recursive proofs of the blob transaction in the pool, and use **EIP-8288** for recursive aggregation.
-
-<div class="grid">
-
-<div>
-
-**EIP-8288** — in-mempool signature and proof aggregation (Buterin, Coratger).
-
-- mempool nodes aggregate every `AGGREGATION_INTERVAL = 1000` ms
-- a mode-1 wrapper is one recursive STARK over all still-valid transactions
-- nodes recursively combine each other's aggregates
-- builder overhead is a fixed **~256 kB per interval**
-
-</div>
-
-<div>
-
-<div class="claim">
-
-**Same proof system.** So a DA proof is not a second scheme running alongside — it is another leaf in the same recursive tree.
-
-One prover, one recursion, one verifier in the header. The DA statement is **absorbed into the existing ~256 kB**, not added to it.
-
-</div>
-
-<div class="note">
-
-`AGGREGATED_VK` and `DEPS_HASH` are still TBD in the spec, and 8288 concedes the header-size cost of carrying a recursive STARK.
-
-</div>
-
-</div>
-
-</div>
+- Generate a proof per blob transaction.
+- Generate recursive proofs of the blob transaction in the pool, and use **EIP-8288** for recursive aggregation.
 
 ---
 
