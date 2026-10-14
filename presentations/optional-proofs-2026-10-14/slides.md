@@ -8,7 +8,7 @@ category: EIP-8025
 nav_title: "Oct 14 Progress"
 order: 100
 kind: Progress
-description: "TODO: one line on what this update covers."
+description: "Consensus-specs progress, the Execution Chain Proofs EIP, and the Sepolia testnet plan."
 style: |
   :root {
     --ink: #0f172a;
@@ -78,18 +78,8 @@ Breakout call · October 14, 2026
 
 # EIP-8025 progress
 
-<!--
-Fill in the update below. The `prs` class styles a short bullet list: the
-first two markers are coloured (teal, then orange) and each bullet carries
-generous spacing, so this slide reads best with two or three bullets of one
-or two sentences each. Follow the house pattern from previous months:
+- **Consensus specs** — `ProofData` type and gossip validation refined in [#5593](https://github.com/ethereum/consensus-specs/pull/5593), and the ProofEngine is now validation-only in [#5639](https://github.com/ethereum/consensus-specs/pull/5639); both merged October 7.
 
-- **Area** — what changed, with PRs linked inline as [#1234](url).
+- **New EIP** — Execution Chain Proofs, [EIP-8440](https://github.com/ethereum/EIPs/pull/12464), with the accompanying consensus-specs change in [#5725](https://github.com/ethereum/consensus-specs/pull/5725). Both open for review.
 
-Links render teal. Keep the bullet count low; the type is 28px and the slide
-has no scroll.
--->
-
-- **TODO** —
-
-- **TODO** —
+- **Next** — Sepolia testnet deployment.
