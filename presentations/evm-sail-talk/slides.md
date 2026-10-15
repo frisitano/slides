@@ -60,35 +60,48 @@ Draft based on evm-sail adc44afd21ef6d5a45c96046f0d23f527acbf54e, inspected 2026
 
 <div class="eyebrow">01 · Motivation</div>
 
-## What should a verified EVM implement?
+## zkEVM Verification Problem
 
-A precise account of **instructions, transactions, and blocks**.
-
-<div class="flow">
-<div class="card">Executable<br><strong>semantics</strong></div>
-<div>→</div>
-<div class="card">Stated properties<br><strong>and proofs</strong></div>
-<div>→</div>
-<div class="card">Implementation<br><strong>correspondence</strong></div>
-</div>
-
-EVM Sail is an experimental model on this path.
-
-<div class="source">Source: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/index.md">Project goals and status</a> · Arrows describe the verification goal, not completed proofs.</div>
+![h:450](assets/zkevm-verification-problem.svg)
 
 <!--
-The goal motivates the work; it is not an end-to-end result already achieved.
-An executable formal specification lets us state what execution means and compare
-implementations. Proving that a particular implementation follows it is another
-obligation. Explain that “EVM” here includes the enclosing transaction and block rules.
+Follow the execution pipeline: the EVM RV64 guest program is transpiled to the
+zkVM ISA guest program, which runs on the zkVM. The zkVM feeds the proof system.
+This is the architecture motivating verification, not a claim of completed proofs.
+-->
+
+---
+
+<div class="eyebrow">04 · Verification scope</div>
+
+## What exactly are we verifying?
+
+<div class="scope">
+<strong>Block kernel</strong><br>
+Does the block apply the right transactions and system operations?
+<div class="scope">
+<strong>Transaction kernel</strong><br>
+Is the transaction valid, executed, and settled correctly?
+<div class="scope">
+<strong>EVM machine</strong><br>
+Does the program execute according to the EVM rules?
+</div>
+</div>
+</div>
+
+<p class="small">Each scope needs its own correctness claim—and a connection to the others.</p>
+
+<div class="source">Conceptual verification boundaries, not existing package names. Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/introduction.md">Model structure</a>.</div>
+
+<!--
+Nesting illustrates ordinary transaction execution. Block system operations can
+also invoke the machine. The key point is scope, not the detailed call graph.
 -->
 
 ---
 
 <!-- _class: overview -->
 <div class="eyebrow">02 · Sail and the model</div>
-
-## Sail connects machine models to tools
 
 ![h:430](assets/overview-sail.png)
 
@@ -104,315 +117,123 @@ are Lean and Rocq. Do not imply every pictured integration is implemented here.
 
 ---
 
-<div class="eyebrow">02 · Sail and the model</div>
+<div class="eyebrow">03 · Results</div>
 
-## An instruction becomes an executable rule
+## What have we achieved?
 
-```sail
-let gas : gas = carried_gas - G_verylow;
-let a = read_stack_word(sp);
-sp = stack_top_retreat(sp, 1);
-let b = read_stack_word(sp);
-let result = alu_add(a, b);
-write_stack_word(sp, result);
-(gas, sp, Continue())
-```
+- **Executable specification:** run the model and compare its behaviour with execution-specs.
+- **Multiple execution targets:** reference and optimized execution from a shared Sail model.
+- **Proof-assistant outputs:** Lean and Rocq definitions provide a starting point for proofs.
 
-**ADD:** charge gas, read operands, write the result, continue.
-
-<div class="source">Exact excerpt: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/evm/execute.sail#L157-L163">execute_add</a>. Preceding stack and out-of-gas checks omitted here.</div>
+<div class="source">Implemented capabilities, not end-to-end verification. Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/extractions.md">Targets</a> · <a href="https://github.com/frisitano/evm-sail/actions/runs/32505286476">Reviewed CI run</a>.</div>
 
 <!--
-Point out typed gas, explicit stack cursor and instruction outcome. The complete
-function checks stack shape and available gas before this excerpt. alu_add
-implements EVM word arithmetic. This is a readable entry point; storage access,
-calls and fork-sensitive rules are where the model becomes more involved.
+Distinguish execution, differential testing, and proof. These are different kinds
+of evidence. Do not claim full test-suite conformance or complete EVM correctness.
 -->
 
 ---
 
-<div class="eyebrow">03 · Successes and challenges</div>
+<div class="eyebrow">03 · Challenges</div>
 
-## One model already serves several workflows
+## What has been difficult?
 
-- **Execute:** reference C, optimized C, and Python targets.
-- **Check:** typed sizes and SMT-backed obligations.
-- **Compare:** differential validation against execution-specs.
-- **Extract:** Lean and Rocq definitions for proof work.
+<div class="card">
 
-<div class="source">Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/extractions.md">Extractions</a> · <a href="https://github.com/frisitano/evm-sail/actions/runs/32505286476">Configured CI gates passed at the reviewed revision</a>.</div>
+**Semantic coverage**  
+Correct instructions are only part of correct transaction and block execution.
+
+**Proof usability**  
+Generating definitions is easier than making them convenient to reason about.
+
+**Execution performance**  
+A clear specification still needs to run efficiently enough to test and use.
+
+</div>
+
+<div class="source">Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/introduction.md">Model scope</a> · <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/engineering.md">Engineering experience</a>.</div>
 
 <!--
-These are concrete implemented workflows, not a claim of complete correctness.
-Typing catches size/shape errors; differential tests compare behavior; generated
-definitions permit proofs. The configured CI run was green, including corpus.
-Do not quote 100% conformance: no complete retained v0.6.2 corpus result was
-recorded at the inspected revision. Presenter: add a firsthand success example.
+Frame these as lessons from building the workflow. The next slides explain
+their consequences, without descending into instruction implementations.
 -->
 
 ---
 
-<div class="eyebrow">03 · Successes and challenges</div>
+<div class="eyebrow">05 · Proof-assistant extraction</div>
 
-## The difficult rules cross execution boundaries
+## One model, multiple proof environments
 
 <div class="cols">
 <div class="card">
 
-### Semantic complexity
+### The benefit
 
-- Fork-dependent gas and validity
-- Calls, reverts, and state rollback
-- Transaction and block accounting
+Reuse the Sail specification in **Lean and Rocq**.
 
-</div>
-<div class="card">
-
-### Tooling complexity
-
-- Host contracts for every target
-- Generated definitions versus proof ergonomics
-- Efficient execution versus transparent semantics
-
-</div>
-</div>
-
-<div class="source">Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/introduction.md">Model structure</a> · <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/engineering.md">Engineering notes</a>.</div>
-
-<!--
-These are implementation concerns and design tradeoffs, not invented personal
-anecdotes. Presenter: replace one point with an actual debugging or extraction
-experience. Transition: separating execution scopes makes these interactions
-easier to describe and gives us candidate boundaries for proofs.
--->
-
----
-
-<div class="eyebrow">04 · Transaction kernel / block kernel / EVM machine</div>
-
-## Three scopes, different responsibilities
-
-<div class="scope">
-<strong>Block kernel</strong> · system calls, transaction sequencing, block-end operations
-<div class="scope">
-<strong>Transaction kernel</strong> · validation, authorization, upfront accounting, settlement
-<div class="scope">
-<strong>EVM machine</strong> · instruction execution and call frames<br>
-Program counter · stack · memory · gas
-</div>
-</div>
-</div>
-
-<p class="small">Stateless verification surrounds execution: witness handling and commitment checks.</p>
-
-<div class="source">Conceptual scopes, not three existing package names. Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/evm/transaction.sail">transaction</a> · <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/executor/block.sail">block</a> · <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/evm/interpreter.sail">interpreter</a>.</div>
-
-<!--
-Introduce the transaction kernel first: validity, authorizations, upfront effects,
-execution and settlement. Then zoom out to block sequencing and system work;
-finally zoom in to the EVM machine. The nesting describes ordinary transaction
-execution, not every possible entry path: block system calls also invoke execution.
-The current code has executor modules and a shared sail/kernel, not three separately
-named kernel packages. State access and rollback cross the conceptual scopes.
--->
-
----
-
-<div class="eyebrow">04 · Execution boundaries</div>
-
-## A reverted call does not erase the transaction
-
-<div class="flow">
-<div class="card"><strong>Caller</strong><br>CALL</div>
-<div>→</div>
-<div class="card"><strong>Callee</strong><br>SSTORE → REVERT</div>
-<div>→</div>
-<div class="card"><strong>Caller</strong><br>receives failure</div>
-</div>
-
-- Callee state changes roll back at its call boundary.
-- The caller can handle failure and continue.
-- Consumed gas still matters to transaction settlement.
-
-<div class="source">Schematic example. Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/evm/interpreter.sail">Frame interpreter</a> · <a href="https://github.com/frisitano/evm-sail/tree/adc44afd21ef6d5a45c96046f0d23f527acbf54e/sail/kernel">Shared kernel</a>.</div>
-
-<!--
-Assume a valid non-static nested call, enough gas, and a caller that handles the
-failed result. REVERT rolls back callee state changes; unused callee gas is returned,
-but consumed gas is not undone. Do not imply every transaction-scoped structure
-resets on every revert. No balances or gas numbers are asserted by this sketch.
-The point is that frame-local state, rollback state and transaction accounting
-have different lifetimes, so proving only an opcode rule is not the whole problem.
--->
-
----
-
-<div class="eyebrow">05 · Proof-assistant extractions</div>
-
-## Extraction preserves a shared semantic starting point
-
-<div class="cols">
-<div class="card">
-
-### What it buys
-
-- Definitions follow the Sail source.
-- Lean and Rocq provide proof infrastructure.
-- Named host assumptions remain inspectable.
+Spend proof effort on properties rather than rewriting the entire model.
 
 </div>
 <div class="card">
 
-### What it costs
+### The cost
 
-- Generated structure can complicate proofs.
-- Effects and host contracts need reasoning.
-- Compiler changes can affect proof maintenance.
+Generated definitions are not always proof-friendly.
+
+External assumptions and changes to generated output still need careful management.
 
 </div>
 </div>
 
-<p class="small">Generated definitions do not establish source-to-binary correctness.</p>
+**Result:** proof work can start from the model; extraction alone does not prove correctness.
 
-<div class="source">Source: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/extractions.md">Extraction targets and trust boundary</a>. Costs are design tradeoffs to discuss.</div>
-
-<!--
-Lean's HostAxioms.lean and Rocq's ExternBoundary.v make the external boundary
-explicit: hashing, input/output, stores, buffers and trie database operations.
-Generated code avoids independently rewriting the whole semantics in each prover.
-It does not remove the need for useful invariants, auxiliary lemmas or a precise
-theorem statement. Presenter: add the extraction pain point you want to emphasize.
--->
-
----
-
-<div class="eyebrow">05 · A concrete proof surface</div>
-
-## Small interface properties are already provable
-
-```coq
-Lemma rlp_advance_remaining_nonnegative (source_len consumed : Z) :
-  rlp_cursor_advance_valid source_len consumed = true ->
-  0 <= source_len - consumed.
-```
-
-- A valid cursor advance leaves a nonnegative remaining length.
-- Related lemmas cover progress, slice ends, and composition.
-- This proves cursor properties, not complete EVM correctness.
-
-<div class="source">Exact statement: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/extractions/rocq/proofs/RlpCursor.v">RlpCursor.v</a> · Handwritten lemmas over extracted definitions.</div>
+<div class="source">Source: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/extractions.md">Extraction targets and external boundaries</a>.</div>
 
 <!--
-The file imports evm_types. The proof unfolds the validity predicate, extracts
-the bound, and uses linear integer arithmetic. This is a tangible, deliberately
-narrow example of the proof surface, not a proof of the whole RLP decoder.
-Its small interface suggests a useful question for refactoring: what other
-boundaries can expose compact properties that compose?
+There are narrow existing proof examples, but no complete EVM correctness result.
+Do not present extraction as a verified source-to-binary compilation pipeline.
 -->
 
 ---
 
 <div class="eyebrow">06 · Modified compiler and performance</div>
 
-## Specialize representation without hiding the semantics
+## Making the model practical to run
 
-<div class="flow">
-<div class="card"><strong>Sail word</strong><br>256-bit semantics</div>
-<div>→</div>
-<div class="card"><strong>Custom lowering</strong><br>fixed layout</div>
-<div>→</div>
-<div class="card"><strong>Optimized C</strong><br>4 × 64-bit limbs</div>
-</div>
+- **Type-driven lowering: semantic types become machine types.** The compiler uses the model’s types to choose efficient execution representations.
 
-- Fixed widths and specialization reduce representation overhead.
-- Selected C refinements replace operations in optimized execution.
-- Reference and proof targets retain explicit Sail bodies.
-
-<div class="source">Sources: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/engineering.md">Custom compiler and layouts</a> · <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/extractions.md">Refinement boundary</a>.</div>
+![w:1140](assets/execution-comparison.png)
 
 <!--
-Four little-endian u64 limbs are the concrete EVM-word representation in the
-optimized ABI. Distinguish compiler lowering and specialization from handwritten
-runtime refinements and interpreter changes. Explicit reference bodies keep the
-semantics available for reasoning; they do not automatically prove an optimized
-replacement equivalent. Exported specialization obligations are another check,
-not an end-to-end verified compiler theorem.
+Semantic types express what values mean in the model; machine types determine
+how execution stores and manipulates them. Type-driven lowering connects the two.
+The optimized EVM-word representation uses four 64-bit limbs. This is a compiler
+design choice, not an end-to-end correctness proof or a measured speedup claim.
 -->
 
 ---
 
-<div class="eyebrow">06 · Performance optimizations</div>
+<div class="eyebrow">07 · Future refactor · proposed direction</div>
 
-## State representation changes the generated code
+## What we would change next
 
-<div class="cols">
 <div class="card">
 
-### Thread a base pointer
+**Clearer execution boundaries**  
+Make the machine, transaction, and block responsibilities easier to isolate.
 
-Keep a pointer live across calls.
+**Proof-friendly interfaces**  
+Expose smaller correctness claims that can be connected.
 
-Moves and spills can outweigh saved address calculations.
-
-**Reported experiment: regression.**
-
-</div>
-<div class="card">
-
-### Carry hot values
-
-Pass pc, gas, and cursors through handlers.
-
-Expose dataflow and give the compiler fewer aliasing problems.
-
-**Reported experiment: improvement.**
+**Performance-aware structure**  
+Keep efficient execution and a readable specification viable together.
 
 </div>
-</div>
 
-<div class="source">Source: <a href="https://github.com/frisitano/evm-sail/blob/adc44afd21ef6d5a45c96046f0d23f527acbf54e/book/docs/engineering.md#registers-custody-and-why-code-structure-decides">Documented A/B experiments</a>. Historical, workload-specific observations; not new measurements.</div>
+<p class="small">Intended payoffs: clearer scope, easier proofs, faster iteration.</p>
 
 <!--
-These examples concern state organization and runtime/compiler interaction, not
-an isolated compiler-version comparison. The engineering notes report +7% for
-pointer threading and -5.25% for carried values on its landing day. Percentages
-are intentionally omitted on screen because their full run provenance and metric
-would need explanation. Do not imply a universal speedup or additive savings.
-The validation loop checks verdicts and byte-exact outputs before cost comparisons.
+These are proposed priorities for discussion, not a committed implementation plan.
+The actual refactor and its proof milestones still need presenter confirmation.
 -->
 
----
-
-<div class="eyebrow">07 · Future refactor · discussion draft</div>
-
-## What should the next structure make easier to prove?
-
-<div class="cols">
-<div class="card">
-
-### Current starting point
-
-An EVM machine, transaction/block executors, and a shared state kernel.
-
-</div>
-<div class="card">
-
-### Candidate direction
-
-Explicit interfaces between scopes, with local invariants and composition rules.
-
-</div>
-</div>
-
-**Next iteration:** name the responsibilities that move and the proof they enable.
-
-<p class="small">Proposed framing for discussion with Tau; not a committed refactor plan.</p>
-
-<!--
-Presenter input required before this slide can state the actual roadmap.
-Do not substitute the compiler TODO list for the intended refactor.
-Ask which responsibilities move, which interfaces become explicit and which
-proof or optimization gets easier. Replace the candidate box with the actual
-before/after design, then return to the opening goal of formally verifying the EVM.
-Project: https://github.com/frisitano/evm-sail
--->

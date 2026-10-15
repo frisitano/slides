@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="450" viewBox="0 0 1100 450" role="img" aria-labelledby="title desc">
+  <title id="title">zkEVM verification pipeline</title>
+  <desc id="desc">EVM RV64 guest program, transpilation to zkVM ISA guest program, execution on the zkVM, then the proof system.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L8 5 L1 9" fill="none" stroke="#087f8c" stroke-width="2"/></marker>
+  </defs>
+  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle" font-size="28" fill="#172438">
+    <rect x="220" y="5" width="660" height="66" rx="12" fill="#edf2fa" stroke="#426899" stroke-width="2"/>
+    <text x="550" y="47">EVM RV64 Guest Program</text>
+    <rect x="220" y="133" width="660" height="66" rx="12" fill="#edf8f8" stroke="#087f8c" stroke-width="2"/>
+    <text x="550" y="175">zkVM ISA Guest Program</text>
+    <rect x="220" y="261" width="660" height="66" rx="12" fill="#edf8f8" stroke="#087f8c" stroke-width="2"/>
+    <text x="550" y="303">zkVM</text>
+    <rect x="220" y="379" width="660" height="66" rx="12" fill="#10243a"/>
+    <text x="550" y="421" fill="white">Proof System</text>
+  </g>
+  <g stroke="#087f8c" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M550 73 V123"/>
+    <path d="M550 201 V251"/>
+    <path d="M550 329 V369"/>
+  </g>
+  <g font-family="Inter, system-ui, sans-serif" font-size="22" fill="#526174">
+    <text x="580" y="109">Transpilation</text>
+    <text x="580" y="237">Runs on</text>
+  </g>
+</svg>
