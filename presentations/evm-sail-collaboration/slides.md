@@ -79,11 +79,10 @@ style: |
 
 Status and a shared verification target
 
-Francesco Risitano · EF zkEVM / EVM Sail · ZisK · FV contributors
+Francesco Risitano · EF zkEVM
 
-**18 November 2026 — date to confirm**
+**18 November 2026**
 
-A shared starting point for a first collaboration.
 
 <!--
 Opening: align on a tractable first artifact, rather than imply an existing joint commitment. Date is provisional pending host confirmation. Individual attendance and speakers also need confirmation; Paweł is the proposed evmone/intx lead. This is the host's short technical update within the broader meeting, not a replacement for the other teams' contributions.
