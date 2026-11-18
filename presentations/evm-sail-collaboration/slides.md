@@ -119,8 +119,6 @@ Canonical agenda: EVM Sail, ZisK and evmone Collaboration, discussion proposal c
 - **Extraction:** reference C, optimized C → RISC-V / ZisK;
   Lean, Rocq and executable Python renderings.
 
-> Supported profiles ≠ complete test coverage.
-> Generated definitions and compiler checks ≠ an interpreter proof.
 
 <!--
 Source snapshot: frisitano/evm-sail main at 06027a74fc691c1974a19cf4759af7e81aeac4bf, inspected 18 November 2026.
@@ -149,8 +147,6 @@ Actual target directories include C spec/optimised, Lean with HostAxioms, Rocq w
 
 [Dashboard](https://frisitano.github.io/evm-sail/performance.html) · [Engineering lessons](https://frisitano.github.io/evm-sail/engineering.html)
 
-> Older build, not today’s speed: steps ≠ proving time.
-> Equal-output gates first; pinning and threading measured negative.
 
 <!--
 Dataset at source revision 06027a74fc691c1974a19cf4759af7e81aeac4bf:
@@ -165,22 +161,19 @@ Lessons: engineering notes require byte-exact EELS output gates before timing; a
 
 <!-- _class: prs -->
 
-# Next: make the proof boundary easier to use
+# Next steps
 
-- **Model interface:** make machine state and host contracts
-  easy to relate across Sail, evmone and a guest.
-- **Refinement:** separate semantic definitions, generated code
-  and optimized replacements; expose their obligations.
-- **Compiler research:** payload tables, carried-tuple lowering,
-  guaranteed tail calls — evaluate before adopting.
-- **Shared validation:** fork-pinned cases, counterexamples
-  and explicit assumptions alongside proof milestones.
-
-> Discussion directions, not a committed joint roadmap.
+- Simplify the model and host interfaces
+- Improve Lean / Rocq extraction
+- Optimize execution while preserving semantics
+- Return to the upstream Sail compiler
+- Explore a C++ backend for Sail
 
 <!--
-Proposals for this collaboration: ask the teams which machine-state relation and host interface would remove the most proof friction. Existing pure Sail kernel and host-contract architecture supplies a starting point; do not present the proposed interface work as a new completed refactor.
-Source engineering page at 06027a74fc691c1974a19cf4759af7e81aeac4bf lists parallel kind/payload tables, wide carried tuples as in/out parameters and guaranteed-tail-call handlers (GCC >=15 musttail) as planned. These are candidates, not measured improvements. Preserve reference semantics and output gates while exploring replacements. Prioritize whichever boundary the selected first proof actually consumes. Ownership, effort and dates need team agreement.
+These are future directions for discussion, not completed work or a committed joint roadmap. The current model still requires the custom Sail compiler; returning to upstream requires resolving its dependence on fork-only specialization, splicing and proof-obligation features. No upstream compatibility is claimed today. Explore whether a C++ backend for Sail would help implementation, performance or verification; no backend implementation or benefit is claimed.
+Simplifying model/host interfaces and improving Lean/Rocq extraction should be driven by the first proof boundary. Keep semantic definitions separate from optimized replacements, with explicit assumptions and validation. Ownership and sequencing remain to be agreed.
+Source context: https://github.com/frisitano/evm-sail/blob/06027a74fc691c1974a19cf4759af7e81aeac4bf/book/docs/engineering.md
+
 -->
 
 ---
