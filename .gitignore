@@ -26,7 +26,3 @@ yarn.lock
 
 # Marp HTML exports (VS Code extension auto-export)
 presentations/*/slides.html
-
-# Devenv local state
-.devenv/
-.direnv/
