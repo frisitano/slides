@@ -17,7 +17,7 @@ readonly NC='\033[0m' # No Color
 readonly PRESENTATIONS_DIR="presentations"
 readonly OUTPUT_DIR="site"
 readonly DECKS_OUTPUT_DIR="${OUTPUT_DIR}/decks"
-readonly MARP_CLI="npx -y @marp-team/marp-cli@latest"
+readonly MARP_CLI="${MARP_CLI:-npx -y @marp-team/marp-cli@4.5.1}"
 readonly MDBOOK_CLI="mdbook"
 
 # Track discovered decks for presentations page

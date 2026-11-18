@@ -2,6 +2,43 @@
 
 A production-ready system for hosting multiple [Marp](https://marp.app/) (Markdown Presentation Ecosystem) slide decks with automated GitHub Pages deployment and an [mdbook](https://rust-lang.github.io/mdBook/)-powered landing page.
 
+## Reproducible local tooling
+
+With Nix and Devenv installed, run these commands from the repository root.
+`devenv.lock` pins the toolchain; no global npm or Cargo install is needed.
+
+```bash
+devenv tasks list
+devenv tasks run slides:build
+devenv tasks run slides:preview
+```
+
+Open <http://127.0.0.1:8000/> for the complete site. Deck wrappers are at
+`/presentations/<deck>/index.html`; standalone HTML is at
+`/decks/<deck>/index.html`. Stop preview with Ctrl-C. Rebuild after editing.
+The generated `book/` and `site/` directories are disposable and ignored by Git.
+
+For live editing, use one of these explicit tasks:
+
+```bash
+devenv tasks run slides:marp-preview  # http://localhost:8081/<deck>/slides.md
+devenv tasks run slides:book-preview  # http://127.0.0.1:3005/
+```
+
+Marp's development server listens on all interfaces; use it on a trusted network.
+The book preview requires an initial full build to generate `book/src` and
+rebuilds only the book. It can replace the standalone deck output in `site/`;
+rerun `slides:build` before using the full-site preview or sharing output.
+
+The pinned packages provide Marp CLI 4.5.1 (Marp Core 4.4.0), mdBook 0.5.4,
+Bash, standard shell tools, and Python for static HTTP serving. HTML generation
+does not require a browser. PDF/PPTX/image export and the optional deck-mutating
+`scripts/fit-overview-deck-height.mjs` image-fitting utility are outside this
+environment; that utility additionally requires Node on PATH and a browser.
+Existing remote scripts, fonts, or images in decks may still need network access.
+The older manual installation instructions below remain an alternative, but only
+the locked Devenv commands define the reproducible local environment.
+
 ## 🌐 Live Site
 
 Once deployed, your presentations will be available at:
@@ -73,7 +110,7 @@ Once deployed, your presentations will be available at:
    # Or use mdbook's built-in server:
    # mdbook serve
    ```
-   Open http://localhost:3000 (or the port shown) in your browser.
+   Open http://localhost:3005 (or the port shown) in your browser.
 
 ### Adding a New Presentation
 
