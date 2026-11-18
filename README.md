@@ -30,8 +30,10 @@ The book preview requires an initial full build to generate `book/src` and
 rebuilds only the book. It can replace the standalone deck output in `site/`;
 rerun `slides:build` before using the full-site preview or sharing output.
 
-The pinned packages provide Marp CLI 4.5.1 (Marp Core 4.4.0), mdBook 0.5.4,
-Bash, standard shell tools, and Python for static HTTP serving. HTML generation
+The pinned packages provide Marp CLI 4.5.1 (Marp Core 4.4.0), mdBook 0.4.40 (matching Pages CI),
+Bash, standard shell tools, and Python for static HTTP serving. mdBook comes
+from a separate content-addressed Nixpkgs revision pinned in `devenv.nix`; the
+remaining packages use `devenv.lock`. HTML generation
 does not require a browser. PDF/PPTX/image export and the optional deck-mutating
 `scripts/fit-overview-deck-height.mjs` image-fitting utility are outside this
 environment; that utility additionally requires Node on PATH and a browser.
