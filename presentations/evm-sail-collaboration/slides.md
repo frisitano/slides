@@ -195,7 +195,7 @@ Source engineering page at 06027a74fc691c1974a19cf4759af7e81aeac4bf lists parall
 - **One fork: explicit decision today — not yet selected.**
 - Match stack, memory, PC, gas, halt status and return data
   under a stated initial-state relation and matching host effects.
-- Assume host / crypto contracts and 256-bit arithmetic
+- Assume host / crypto contracts
   initially; identify what intx verification can discharge.
 - First milestone: prove a bounded straight-line opcode subset,
   including gas and exceptional halts; share differential cases.
