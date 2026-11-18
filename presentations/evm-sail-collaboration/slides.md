@@ -97,13 +97,14 @@ Opening: align on a tractable first artifact, rather than imply an existing join
 
 1. Introductions and collaboration goals
 2. **EVM Sail: status, lessons and refactor directions**
-3. ZisK: FV effort and the evmone guest
-4. evmone / intx
-5. Together: one fork, proof boundary, first milestone
-6. Optional deep dive; owners and next steps
+3. Cody Sail overview
+4. ZisK: FV effort and the evmone guest
+5. evmone / intx
+6. Together: one fork, proof boundary, first milestone
+7. Optional deep dive; owners and next steps
 
 <!--
-Canonical agenda: EVM Sail, ZisK and evmone Collaboration, discussion proposal consolidated 12 November 2026. Host-requested order: EVM Sail before ZisK. Proposed 60-minute running order: introductions 0–5; EVM Sail 5–15; ZisK 15–25; evmone/intx 25–35; scope/fork 35–50; optional deep dive 50–55; decisions 55–60. Duration, speakers and attendance remain unconfirmed. Slides 3–5 support the EVM Sail segment; slide 6 opens collective scope discussion. Let the other teams present their own work.
+Canonical agenda: EVM Sail, ZisK and evmone Collaboration, discussion proposal consolidated 12 November 2026. Host-requested order: EVM Sail, Cody Sail overview, ZisK, evmone/intx, then collective scope. Timing must be revised to include Cody’s overview; the earlier 60-minute allocation was: introductions 0–5; EVM Sail 5–15; ZisK 15–25; evmone/intx 25–35; scope/fork 35–50; optional deep dive 50–55; decisions 55–60. Duration, speakers and attendance remain unconfirmed. Slides 3–5 support the EVM Sail segment; slide 6 opens collective scope discussion. Let the other teams present their own work.
 -->
 
 ---
