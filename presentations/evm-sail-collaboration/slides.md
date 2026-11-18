@@ -98,7 +98,7 @@ Opening: align on a tractable first artifact, rather than imply an existing join
 1. Introductions and collaboration goals
 2. **EVM Sail: status, lessons and refactor directions**
 3. ZisK: FV effort and the evmone guest
-4. evmone / intx verification — Paweł, proposed lead
+4. evmone / intx
 5. Together: one fork, proof boundary, first milestone
 6. Optional deep dive; owners and next steps
 
