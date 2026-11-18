@@ -1,28 +1,83 @@
 ---
 marp: true
 theme: default
-paginate: true
+paginate: false
 size: 16:9
 title: EVM Sail, ZisK & evmone — Status and a Shared Verification Target
 nav_title: EVM Sail collaboration
 category: Formal Verification
 description: "EVM Sail status, measurement lessons, and a proposed shared interpreter verification target."
 style: |
-  section { font-family: system-ui, sans-serif; font-size: 29px; color: #14263d; padding: 48px 64px; background: #f8fafc; }
-  h1 { font-size: 1.65em; color: #102a43; }
-  h2 { font-size: 1.3em; color: #102a43; }
-  strong { color: #0f766e; }
-  a { color: #075985; }
-  li { margin: 0.3em 0; }
-  table { font-size: 0.85em; width: 100%; }
-  th { background: #e2e8f0; }
-  blockquote { border-color: #0f766e; font-size: 0.83em; color: #334155; }
-  footer { font-size: 16px; }
+  :root {
+    --ink: #0f172a;
+    --slate: #475569;
+    --teal: #0f766e;
+    --orange: #f97316;
+  }
+  section {
+    background: #f8fafc;
+    color: var(--ink);
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    padding: 64px 72px;
+  }
+  section.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  section.title h1 {
+    font-size: 58px;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+  section.title p {
+    color: var(--slate);
+    font-size: 23px;
+    margin-top: 22px;
+  }
+  section.prs h1 {
+    font-size: 46px;
+    letter-spacing: -0.035em;
+    margin: 0 0 58px;
+  }
+  section.prs ul {
+    width: 88%;
+    padding-left: 34px;
+  }
+  section.prs li {
+    font-size: 28px;
+    line-height: 1.4;
+    margin: 0 0 50px;
+    padding-left: 10px;
+  }
+  section.prs li::marker {
+    color: var(--teal);
+  }
+  section.prs li + li::marker {
+    color: var(--orange);
+  }
+  section.prs a {
+    color: var(--teal);
+  }
+  section { font-size: 28px; }
+  section.prs h1 { margin-bottom: 32px; }
+  section.prs ul, section.prs ol { width: 100%; }
+  section.prs li { margin-bottom: 18px; }
+  section.prs ol { padding-left: 44px; }
+  section.prs ol li { margin-bottom: 14px; }
+  section.prs table { font-size: 25px; width: 100%; }
+  section.prs th { background: #e2e8f0; }
+  section.prs blockquote { color: var(--slate); border-color: var(--teal); font-size: 21px; margin-top: 20px; }
+  section.prs a { color: var(--teal); }
 ---
+
+<!-- _class: title -->
 
 # EVM Sail, ZisK & evmone
 
-## Status and a shared verification target
+Status and a shared verification target
 
 Francesco Risitano · EF zkEVM / EVM Sail · ZisK · FV contributors
 
@@ -36,7 +91,9 @@ Opening: align on a tractable first artifact, rather than imply an existing join
 
 ---
 
-## Today’s conversation
+<!-- _class: prs -->
+
+# Today’s conversation
 
 1. Introductions and collaboration goals
 2. ZisK: FV effort and the evmone guest
@@ -51,7 +108,9 @@ Canonical agenda: EVM Sail, ZisK and evmone Collaboration, discussion proposal c
 
 ---
 
-## EVM Sail today: one model, several artifacts
+<!-- _class: prs -->
+
+# EVM Sail today: one model, several artifacts
 
 - **Compiler:** bound-driven C specialization, fixed layouts,
   splice overrides and exported narrowing obligations.
@@ -76,7 +135,9 @@ Actual target directories include C spec/optimised, Lean with HostAxioms, Rocq w
 
 ---
 
-## Performance: measure the whole path
+<!-- _class: prs -->
+
+# Performance: measure the whole path
 
 **Archived example: devnet block 110800 · identical stateless input**
 
@@ -102,7 +163,9 @@ Lessons: engineering notes require byte-exact EELS output gates before timing; a
 
 ---
 
-## Next: make the proof boundary easier to use
+<!-- _class: prs -->
+
+# Next: make the proof boundary easier to use
 
 - **Model interface:** make machine state and host contracts
   easy to relate across Sail, evmone and a guest.
@@ -122,7 +185,9 @@ Source engineering page at 06027a74fc691c1974a19cf4759af7e81aeac4bf lists parall
 
 ---
 
-## A collective north star — proposal
+<!-- _class: prs -->
+
+# A collective north star — proposal
 
 **Relate evmone’s EVM machine / interpreter to EVM Sail.**
 
