@@ -110,7 +110,7 @@ Canonical agenda: EVM Sail, ZisK and evmone Collaboration, discussion proposal c
 
 <!-- _class: prs -->
 
-# EVM Sail today: one model, several artifacts
+# EVM Sail today
 
 - **Compiler:** bound-driven C specialization, fixed layouts,
   splice overrides and exported narrowing obligations.
@@ -135,7 +135,7 @@ Actual target directories include C spec/optimised, Lean with HostAxioms, Rocq w
 
 <!-- _class: prs -->
 
-# Performance: measure the whole path
+# Performance
 
 **Archived example: devnet block 110800 · identical stateless input**
 
@@ -184,15 +184,14 @@ Source context: https://github.com/frisitano/evm-sail/blob/06027a74fc691c1974a19
 
 **Relate evmone’s EVM machine / interpreter to EVM Sail.**
 
-- **One fork: explicit decision today — not yet selected.**
+- **One fork**
 - Match stack, memory, PC, gas, halt status and return data
   under a stated initial-state relation and matching host effects.
 - Assume host / crypto contracts
-  initially; identify what intx verification can discharge.
+  initially.
 - First milestone: prove a bounded straight-line opcode subset,
   including gas and exceptional halts; share differential cases.
 
-> Agree the fork, theorem boundary, owners and first artifact.
 
 <!--
 No team has agreed this target or delivered the proposed equivalence result. Select exactly one named fork before fixing the theorem; Amsterdam fixture work does not select the proof fork. Compare specification/implementation availability, coverage and stability together.
