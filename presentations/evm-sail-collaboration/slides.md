@@ -77,7 +77,6 @@ style: |
 
 # EVM Sail, ZisK & evmone
 
-Status and a shared verification target
 
 Francesco Risitano · EF zkEVM
 
